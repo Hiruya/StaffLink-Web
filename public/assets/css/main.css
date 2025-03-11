@@ -22,7 +22,7 @@
   --background-color: #ffffff; /* Background color for the entire website, including individual sections */
   --default-color: #3d4348; /* Default color used for the majority of the text content across the entire website */
   --heading-color: #3e5055; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #388da8; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --accent-color: #23439C; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
@@ -30,11 +30,11 @@
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
   --nav-color: #313336;  /* The default color of the main navmenu links */
-  --nav-hover-color: #77b6ca; /* Applied to main navmenu links when they are hovered over or active */
+  --nav-hover-color: #23439C; /* Applied to main navmenu links when they are hovered over or active */
   --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
   --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
   --nav-dropdown-color: #313336; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #77b6ca; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-dropdown-hover-color: #23439C; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
@@ -102,7 +102,7 @@ h6 {
 .php-email-form .sent-message {
   display: none;
   color: #ffffff;
-  background: #059652;
+  background: #23439C;
   text-align: center;
   padding: 15px;
   margin-bottom: 24px;
@@ -180,7 +180,10 @@ h6 {
 .header .btn-getstarted:focus {
   color: var(--contrast-color);
   background: var(--accent-color);
-  font-size: 14px;
+  font-family: var(--heading-font);
+  font-weight: 500;
+  font-size: 15px;
+
   padding: 8px 25px;
   margin: 0 0 0 30px;
   border-radius: 50px;
@@ -1101,35 +1104,36 @@ section,
 /*--------------------------------------------------------------
 # Clients Section
 --------------------------------------------------------------*/
-.clients {
-  padding: 20px 0;
-}
-
-.clients .client-logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.clients .client-logo img {
-  padding: 20px 40px;
-  max-width: 90%;
-  transition: 0.3s;
-  opacity: 0.5;
-  filter: grayscale(100);
-}
-
-.clients .client-logo img:hover {
-  filter: none;
-  opacity: 1;
-}
-
-@media (max-width: 640px) {
-  .clients .client-logo img {
-    padding: 20px;
+.clients .swiper-slide img {
+    opacity: 0.5;
+    transition: 0.3s;
+    filter: grayscale(100);
   }
-}
+
+  .clients .swiper-slide img:hover {
+    filter: none;
+    opacity: 1;
+  }
+
+  .clients .swiper-wrapper {
+    height: auto;
+  }
+
+  .clients .swiper-pagination {
+    margin-top: 20px;
+    position: relative;
+  }
+
+  .clients .swiper-pagination .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    opacity: 1;
+    background-color: color-mix(in srgb, var(--default-color), transparent 80%);
+  }
+
+  .clients .swiper-pagination .swiper-pagination-bullet-active {
+    background-color: var(--accent-color);
+  }
 
 /*--------------------------------------------------------------
 # Features Section
@@ -1477,7 +1481,7 @@ section,
 }
 
 .pricing ul i {
-  color: #059652;
+  color: #127AF0;
   font-size: 24px;
   padding-right: 3px;
 }
@@ -1941,6 +1945,19 @@ section,
   color: var(--accent-color);
 }
 
+.text-justify {
+    text-align: justify;
+}
+
+.clients .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .clients .client-logo {
+    padding: 10px;
+  }
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
