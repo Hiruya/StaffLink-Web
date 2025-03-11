@@ -15,6 +15,7 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
@@ -41,40 +42,23 @@
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-      <a href="#" class="logo d-flex align-items-center me-auto">
+      <a href="" class="logo d-flex align-items-center me-auto">
         <img src="{{asset('assets/img/logo.png')}}" alt="">
       </a>
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="#" class="active">Home</a></li>
-          <li><a href="#about">About</a></li>
+          <li><a href="#" class="active">Beranda</a></li>
+          <li><a href="#about">Tentang Kami</a></li>
           <li><a href="#features">Features</a></li>
-          <li><a href="#services">Services</a></li>
+          <li><a href="#services">Layanan</a></li>
           <li><a href="#pricing">Pricing</a></li>
-          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="#">Dropdown 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Dropdown 2</a></li>
-              <li><a href="#">Dropdown 3</a></li>
-              <li><a href="#">Dropdown 4</a></li>
-            </ul>
-          </li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#contact">Hubungi Kami</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="index.html#about">Get Started</a>
+      <a class="btn-getstarted" href="{{route('login')}}">Masuk</a>
 
     </div>
   </header>
@@ -88,8 +72,8 @@
       </div>
       <div class="container text-center">
         <div class="d-flex flex-column justify-content-center align-items-center">
-          <h1 data-aos="fade-up">Welcome to <span>QuickStart</span></h1>
-          <p data-aos="fade-up" data-aos-delay="100">Quickly start your project now and set the stage for success<br></p>
+          <h1 data-aos="fade-up">YOUR SUPPORT SYSTEM</h1>
+          <p data-aos="fade-up" data-aos-delay="100">Kekuatan kami untuk dapat memberikan pelayanan yang terbaik bagi kebutuhan Anda.<br></p>
           <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
             <a href="#about" class="btn-get-started">Get Started</a>
             <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
@@ -152,18 +136,17 @@
         <div class="row gy-4">
 
           <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
-            <p class="who-we-are">Who We Are</p>
-            <h3>Unleashing Potential with Creative Strategy</h3>
-            <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
+            <p class="who-we-are">Tentang Kami</p>
+            <h3>PT. CIPTA BUMI PRAWARA</h3>
+            <p class="text-justify">
+                Kami adalah perusahaan jasa Outsourcing (Tenaga Alih Daya) yang berkomitmen membantu konsumen berfokus pada bisnis utama mereka dan mencapai efisiensi bisnis melalui layanan terintegrasi. Kami menyediakan One Stop Service di berbagai lokasi seperti rumah, kantor, rumah sakit, sekolah, kampus, tempat ibadah, dan lainnya. Dengan pengembangan sumber daya manusia melalui pengawasan dan pelatihan, kami menawarkan solusi untuk kebutuhan Hospitality Service, Facility Service, Cleaning Service, Security Service, dan Marketing Service. Dengan motto kami “Support Your System”, mencerminkan dedikasi kami dalam memberikan pelayanan terbaik untuk memenuhi kebutuhan Anda.
             </p>
-            <ul>
+            {{-- <ul>
               <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
               <li><i class="bi bi-check-circle"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
               <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
-            </ul>
-            <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+            </ul> --}}
+            <a href="#" class="read-more"><span>Selengkapnya</span><i class="bi bi-arrow-right"></i></a>
           </div>
 
           <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
@@ -193,39 +176,58 @@
     <!-- Clients Section -->
     <section id="clients" class="clients section">
 
-      <div class="container" data-aos="fade-up">
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-        <div class="row gy-4">
-
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="{{asset('assets/img/clients/client-1.png')}}" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
-
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="{{asset('assets/img/clients/client-2.png')}}" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
-
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="{{asset('assets/img/clients/client-3.png')}}" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
-
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="{{asset('assets/img/clients/client-4.png')}}" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
-
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="{{asset('assets/img/clients/client-5.png')}}" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
-
-          <div class="col-xl-2 col-md-3 col-6 client-logo">
-            <img src="{{asset('assets/img/clients/client-6.png')}}" class="img-fluid" alt="">
-          </div><!-- End Client Item -->
+          <div class="swiper init-swiper">
+            <script type="application/json" class="swiper-config">
+              {
+                "loop": true,
+                "speed": 600,
+                "autoplay": {
+                  "delay": 5000
+                },
+                "slidesPerView": "auto",
+                "pagination": {
+                  "el": ".swiper-pagination",
+                  "type": "bullets",
+                  "clickable": false
+                },
+                "breakpoints": {
+                  "320": {
+                    "slidesPerView": 2,
+                    "spaceBetween": 40
+                  },
+                  "480": {
+                    "slidesPerView": 3,
+                    "spaceBetween": 60
+                  },
+                  "640": {
+                    "slidesPerView": 4,
+                    "spaceBetween": 80
+                  },
+                  "992": {
+                    "slidesPerView": 6,
+                    "spaceBetween": 120
+                  }
+                }
+              }
+            </script>
+            <div class="swiper-wrapper align-items-center">
+              <div class="swiper-slide"><img src="assets/img/clients/client-1.png" class="img-fluid" alt=""></div>
+              <div class="swiper-slide"><img src="assets/img/clients/client-2.png" class="img-fluid" alt=""></div>
+              <div class="swiper-slide"><img src="assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
+              <div class="swiper-slide"><img src="assets/img/clients/client-4.png" class="img-fluid" alt=""></div>
+              <div class="swiper-slide"><img src="assets/img/clients/client-5.png" class="img-fluid" alt=""></div>
+              <div class="swiper-slide"><img src="assets/img/clients/client-6.png" class="img-fluid" alt=""></div>
+              <div class="swiper-slide"><img src="assets/img/clients/client-7.png" class="img-fluid" alt=""></div>
+              <div class="swiper-slide"><img src="assets/img/clients/client-8.png" class="img-fluid" alt=""></div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
 
         </div>
 
-      </div>
-
-    </section><!-- /Clients Section -->
+      </section><!-- /Clients Section -->
 
     <!-- Features Section -->
     <section id="features" class="features section">
@@ -366,8 +368,8 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Services</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <h2>Layanan</h2>
+        <p>Kami menawarkan berbagai solusi untuk Anda yang sedang berusaha mewujudnyatakan visi misi Anda. </p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -376,10 +378,12 @@
 
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <div class="service-item item-cyan position-relative">
-              <i class="bi bi-activity icon"></i>
+                <span class="material-icons icon">
+                    cleaning_services
+                    </span>
               <div>
-                <h3>Nesciunt Mete</h3>
-                <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
+                <h3>Kebersihan dan Keamanan</h3>
+                <p>Menyediakan seluruh sistem jasa kebersihan dan keamanan yang terencana dan teruji.</p>
                 <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
@@ -387,10 +391,10 @@
 
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
             <div class="service-item item-orange position-relative">
-              <i class="bi bi-broadcast icon"></i>
+                <span class="material-icons icon">home_repair_service</span>
               <div>
-                <h3>Eosle Commodi</h3>
-                <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
+                <h3>Penyedia Tenaga Kerja</h3>
+                <p>Menyediakan tenaga terlatih dengan sistem dan pengaturan yang dikelola secara langsung.</p>
                 <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
@@ -398,10 +402,12 @@
 
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
             <div class="service-item item-teal position-relative">
-              <i class="bi bi-easel icon"></i>
+                <span class="material-icons icon">
+                    badge
+                    </span>
               <div>
-                <h3>Ledo Markt</h3>
-                <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
+                <h3>Patroli dan Pengawasan</h3>
+                <p>Menyediakan sistem pengawasan yang terintegrasi guna meningkatkan kualitas pengawasan.</p>
                 <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
@@ -409,21 +415,12 @@
 
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
             <div class="service-item item-red position-relative">
-              <i class="bi bi-bounding-box-circles icon"></i>
+                <span class="material-icons icon">
+                    supervisor_account
+                    </span>
               <div>
-                <h3>Asperiores Commodi</h3>
-                <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
-                <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
-              </div>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
-            <div class="service-item item-indigo position-relative">
-              <i class="bi bi-calendar4-week icon"></i>
-              <div>
-                <h3>Velit Doloremque.</h3>
-                <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
+                <h3>Kepemimpinan Area</h3>
+                <p>Menyediakan pemimpin lapangan (leader) sesuai dengan kebutuhan area atau wilayah dalam perjanjian yang disepakati.</p>
                 <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
@@ -431,10 +428,12 @@
 
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="600">
             <div class="service-item item-pink position-relative">
-              <i class="bi bi-chat-square-text icon"></i>
+                <span class="material-icons icon">
+                    question_answer
+                    </span>
               <div>
-                <h3>Dolori Architecto</h3>
-                <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
+                <h3>Konsultasi dan Sistem Pelatihan</h3>
+                <p>Menyediakan konsultasi dan sistem pelatihan serta tenaga pelatih secara berkala dan terprogram.</p>
                 <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
