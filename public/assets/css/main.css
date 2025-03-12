@@ -1105,10 +1105,11 @@ section,
 # Clients Section
 --------------------------------------------------------------*/
 .clients .swiper-slide img {
-    opacity: 0.5;
+    max-width: 35%;
+    opacity: 0.7;
     transition: 0.3s;
     filter: grayscale(100);
-  }
+}
 
   .clients .swiper-slide img:hover {
     filter: none;
