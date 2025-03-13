@@ -84,72 +84,8 @@
 
     </section><!-- /Hero Section -->
 
-<!-- Featured Services Section with Swiper -->
-<section id="featured-services" class="featured-services section light-background">
-    <div class="container" data-aos="fade-up" data-aos-delay="10">
-      <div class="swiper init-swiper">
-        <script type="application/json" class="swiper-config">
-          {
-            "loop": true,
-            "speed": 600,
-            "autoplay": {
-              "delay": 5000
-            },
-            "slidesPerView": "auto",
-            "pagination": {
-              "el": ".swiper-pagination",
-              "type": "bullets",
-              "clickable": true
-            },
-            "navigation": {
-              "nextEl": ".swiper-button-next",
-              "prevEl": ".swiper-button-prev"
-            },
-            "breakpoints": {
-              "320": { "slidesPerView": 1, "spaceBetween": 20 },
-              "768": { "slidesPerView": 2, "spaceBetween": 30 },
-              "1024": { "slidesPerView": 3, "spaceBetween": 40 }
-            }
-          }
-        </script>
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="service-item d-flex">
-              <div class="icon flex-shrink-0"><i class="bi bi-briefcase"></i></div>
-              <div>
-                <h4 class="title"><a href="#" class="stretched-link">Lorem Ipsum</a></h4>
-                <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="service-item d-flex">
-              <div class="icon flex-shrink-0"><i class="bi bi-card-checklist"></i></div>
-              <div>
-                <h4 class="title"><a href="#" class="stretched-link">Dolor Sitema</a></h4>
-                <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exa</p>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="service-item d-flex">
-              <div class="icon flex-shrink-0"><i class="bi bi-bar-chart"></i></div>
-              <div>
-                <h4 class="title"><a href="#" class="stretched-link">Sed ut perspiciatis</a></h4>
-                <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-      </div>
-    </div>
-  </section><!-- /Featured Services Section -->
 
-
-    {{-- <!-- Featured Services Section -->
+    <!-- Featured Services Section -->
     <section id="featured-services" class="featured-services section light-background">
 
       <div class="container">
@@ -160,8 +96,8 @@
             <div class="service-item d-flex">
               <div class="icon flex-shrink-0"><i class="bi bi-briefcase"></i></div>
               <div>
-                <h4 class="title"><a href="#" class="stretched-link">Lorem Ipsum</a></h4>
-                <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+                <h4 class="title"><a href="#" class="stretched-link">Service Excellent</a></h4>
+                <p class="description ">Berorientasi pada kebutuhan pelanggan, memberikan solusi terbaik, serta meningkatkan pelayanan untuk membangun loyalitas pelanggan.</p>
               </div>
             </div>
           </div>
@@ -169,29 +105,50 @@
 
           <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="200">
             <div class="service-item d-flex">
-              <div class="icon flex-shrink-0"><i class="bi bi-card-checklist"></i></div>
+              <div class="icon flex-shrink-0"><i class="bi bi-cpu"></i></div>
               <div>
-                <h4 class="title"><a href="#" class="stretched-link">Dolor Sitema</a></h4>
-                <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip exa</p>
+                <h4 class="title"><a href="#" class="stretched-link">Modern</a></h4>
+                <p class="description">Mengedepankan teknologi digital untuk belajar, bekerja, berkomunikasi, dan berkarya untuk meningkatkan kesejahteraan pekerja.</p>
               </div>
             </div>
           </div><!-- End Service Item -->
 
           <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="300">
             <div class="service-item d-flex">
-              <div class="icon flex-shrink-0"><i class="bi bi-bar-chart"></i></div>
+              <div class="icon flex-shrink-0"><i class="bi bi-award"></i></div>
               <div>
-                <h4 class="title"><a href="#" class="stretched-link">Sed ut perspiciatis</a></h4>
-                <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</p>
+                <h4 class="title"><a href="#" class="stretched-link">Integrity</a></h4>
+                <p class="description">Memiliki integritas adalah nilai yang kami terus pegang sampai saat ini dan terus kami tingkatkan guna mencapai mutu SDM yang berkualitas.</p>
               </div>
             </div>
           </div><!-- End Service Item -->
 
+        <!-- Loyal and Ethics in the middle -->
+            <div class="col-xl-4 offset-xl-2 col-lg-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="service-item d-flex">
+                <div class="icon flex-shrink-0"><i class="bi bi-people"></i></div>
+                <div>
+                    <h4 class="title"><a href="#" class="stretched-link">Loyal</a></h4>
+                    <p class="description">Meningkatkan rasa saling memiliki terhadap perusahaan dan berdedikasi tinggi untuk kemajuan perusahaan.</p>
+                </div>
+                </div>
+            </div><!-- End Service Item -->
+
+            <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="500">
+                <div class="service-item d-flex">
+                <div class="icon flex-shrink-0"><i class="bi bi-shield-check"></i></div>
+                <div>
+                    <h4 class="title"><a href="#" class="stretched-link">Ethics</a></h4>
+                    <p class="description">Mengedepankan etika karakter yang berkualitas tinggi dalam setiap pelayanan yang kami berikan kepada mitra akan selalu kami jaga dan tingkatkan.</p>
+                </div>
+                </div>
+            </div><!-- End Service Item -->
+
+            </div>
+
         </div>
 
-      </div>
-
-    </section><!-- /Featured Services Section --> --}}
+        </section><!-- /Featured Services Section -->
 
     <!-- About Section -->
     <section id="about" class="about section">
@@ -240,8 +197,7 @@
 
     <!-- Clients Section -->
 <section id="clients" class="clients section">
-    <div class="container" data-aos="fade-up">
-
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="swiper clients-swiper">
             <script type="application/json" class="swiper-config">
             {
@@ -266,17 +222,17 @@
             }
             </script>
             <div class="swiper-wrapper align-items-center">
-                <div class="swiper-slide"><img src="assets/img/clients/client-1.webp" class="img-fluid" loading="lazy" alt="Client 1"></div>
-                <div class="swiper-slide"><img src="assets/img/clients/client-2.webp" class="img-fluid" loading="lazy" alt="Client 2"></div>
-                <div class="swiper-slide"><img src="assets/img/clients/client-3.webp" class="img-fluid" loading="lazy" alt="Client 3"></div>
-                <div class="swiper-slide"><img src="assets/img/clients/client-4.webp" class="img-fluid" loading="lazy" alt="Client 4"></div>
-                <div class="swiper-slide"><img src="assets/img/clients/client-5.webp" class="img-fluid" loading="lazy" alt="Client 5"></div>
-                <div class="swiper-slide"><img src="assets/img/clients/client-6.webp" class="img-fluid" loading="lazy" alt="Client 6"></div>
-                <div class="swiper-slide"><img src="assets/img/clients/client-7.webp" class="img-fluid" loading="lazy" alt="Client 7"></div>
-                <div class="swiper-slide"><img src="assets/img/clients/client-8.webp" class="img-fluid" loading="lazy" alt="Client 8"></div>
-                <div class="swiper-slide"><img src="assets/img/clients/client-9.webp" class="img-fluid" loading="lazy" alt="Client 9"></div>
-                <div class="swiper-slide"><img src="assets/img/clients/client-10.webp" class="img-fluid" loading="lazy" alt="Client 10"></div>
-                <div class="swiper-slide"><img src="assets/img/clients/client-11.webp" class="img-fluid" loading="lazy" alt="Client 11"></div>
+                <div class="swiper-slide client-logo"><img src="assets/img/clients/client-1.webp" class="img-fluid" alt="Client 1"></div>
+                <div class="swiper-slide client-logo"><img src="assets/img/clients/client-2.webp" class="img-fluid" alt="Client 2"></div>
+                <div class="swiper-slide client-logo"><img src="assets/img/clients/client-3.webp" class="img-fluid" alt="Client 3"></div>
+                <div class="swiper-slide client-logo"><img src="assets/img/clients/client-4.webp" class="img-fluid" alt="Client 4"></div>
+                <div class="swiper-slide client-logo"><img src="assets/img/clients/client-5.webp" class="img-fluid" alt="Client 5"></div>
+                <div class="swiper-slide client-logo"><img src="assets/img/clients/client-6.webp" class="img-fluid" alt="Client 6"></div>
+                <div class="swiper-slide client-logo"><img src="assets/img/clients/client-7.webp" class="img-fluid" alt="Client 7"></div>
+                <div class="swiper-slide client-logo"><img src="assets/img/clients/client-8.webp" class="img-fluid" alt="Client 8"></div>
+                <div class="swiper-slide client-logo"><img src="assets/img/clients/client-9.webp" class="img-fluid" alt="Client 9"></div>
+                <div class="swiper-slide client-logo"><img src="assets/img/clients/client-10.webp" class="img-fluid" alt="Client 10"></div>
+                <div class="swiper-slide client-logo"><img src="assets/img/clients/client-11.webp" class="img-fluid" alt="Client 11"></div>
             </div>
             <div class="swiper-pagination"></div>
         </div>
@@ -404,7 +360,7 @@
     <section id="features" class="features section">
 
       <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
+      <div class="container section-title" data-aos="fade-up" data-aos-delay="100"">
         <h2>Features</h2>
         <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
       </div><!-- End Section Title -->
@@ -597,7 +553,7 @@
             </div>
           </div><!-- End Service Item -->
 
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="600">
+          <div class="col-lg-6 mx-auto" data-aos="fade-up" data-aos-delay="600">
             <div class="service-item item-pink position-relative">
                 <span class="material-icons icon">
                     question_answer
@@ -1123,16 +1079,6 @@
 
   <!-- Main JS File -->
   <script src="{{asset('assets/js/main.js')}}"></script>
-
-  <!-- Initialize Swiper -->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-      AOS.init({ once: true, duration: 800 });
-
-      const clientsSwiperConfig = JSON.parse(document.querySelector(".swiper-config").textContent);
-      new Swiper(".clients-swiper", clientsSwiperConfig);
-    });
-  </script>
 
 </body>
 

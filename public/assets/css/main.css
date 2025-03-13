@@ -985,8 +985,9 @@ section,
 
 .featured-services .service-item .icon {
   background-color: color-mix(in srgb, var(--accent-color), transparent 80%);
-  width: 72px;
-  height: 72px;
+  width: 105px;
+  height: 105px;
+  border-radius: 20px;
   position: relative;
   margin-right: 15px;
   line-height: 0;
@@ -1104,8 +1105,19 @@ section,
 /*--------------------------------------------------------------
 # Clients Section
 --------------------------------------------------------------*/
+.clients {
+    padding: 20px 0;
+  }
+
+.clients .client-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
 .clients .swiper-slide img {
-    max-width: 35%;
+    max-width: 95%;
     opacity: 0.7;
     transition: 0.3s;
     filter: grayscale(100);
