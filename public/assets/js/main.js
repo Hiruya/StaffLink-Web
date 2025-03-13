@@ -179,3 +179,9 @@
 
 })();
 
+document.addEventListener("DOMContentLoaded", function () {
+    AOS.init({ once: true, duration: 800 });
+
+    const clientsSwiperConfig = JSON.parse(document.querySelector(".swiper-config").textContent);
+    new Swiper(".clients-swiper", clientsSwiperConfig);
+  });
