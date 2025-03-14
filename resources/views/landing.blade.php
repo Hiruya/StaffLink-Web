@@ -50,9 +50,8 @@
         <ul>
           <li><a href="#" class="active">Beranda</a></li>
           <li><a href="#about">Tentang Kami</a></li>
-          <li><a href="#features">Features</a></li>
+          <li><a href="#features">Visi & Misi</a></li>
           <li><a href="#services">Layanan</a></li>
-          <li><a href="#pricing">Pricing</a></li>
           <li><a href="#contact">Hubungi Kami</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -361,8 +360,7 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up" data-aos-delay="100"">
-        <h2>Features</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <h2>Visi & Misi</h2>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -375,11 +373,7 @@
                 <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1">
                   <i class="bi bi-binoculars"></i>
                   <div>
-                    <h4 class="d-none d-lg-block">Modi sit est dela pireda nest</h4>
-                    <p>
-                      Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                      velit esse cillum dolore eu fugiat nulla pariatur
-                    </p>
+                    <h4 class="d-none d-lg-block">Menjadi Perusahaan Tenaga Alih Daya Terbaik dan berkelas Dunia</h4>
                   </div>
                 </a>
               </li>
@@ -387,11 +381,15 @@
                 <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
                   <i class="bi bi-box-seam"></i>
                   <div>
-                    <h4 class="d-none d-lg-block">Unde praesenti mara setra le</h4>
-                    <p>
-                      Recusandae atque nihil. Delectus vitae non similique magnam molestiae sapiente similique
-                      tenetur aut voluptates sed voluptas ipsum voluptas
-                    </p>
+                    <h4 class="d-none d-lg-block">Memberikan kualitas pelayanan yang memuaskan kepada konsumen <br>(Customer Satisfaction) dengan menyiapkan tim yang memiliki <br>karakter yang berkualitas.</h4>
+                  </div>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
+                  <i class="bi bi-box-seam"></i>
+                  <div>
+                    <h4 class="d-none d-lg-block">Bertanggung jawab dalam setiap kepercayaan dan kesempatan yang diberikan.</h4>
                   </div>
                 </a>
               </li>
@@ -399,11 +397,7 @@
                 <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3">
                   <i class="bi bi-brightness-high"></i>
                   <div>
-                    <h4 class="d-none d-lg-block">Pariatur explica nitro dela</h4>
-                    <p>
-                      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-                      Debitis nulla est maxime voluptas dolor aut
-                    </p>
+                    <h4 class="d-none d-lg-block">Memberikan pelayanan yang terintegrasi sehingga membantu konsumen dalam menjalankan perusahaannya.</h4>
                   </div>
                 </a>
               </li>
@@ -436,7 +430,7 @@
 
     </section><!-- /Features Section -->
 
-    <!-- Features Details Section -->
+    {{-- <!-- Features Details Section -->
     <section id="features-details" class="features-details section">
 
       <div class="container">
@@ -488,7 +482,7 @@
 
       </div>
 
-    </section><!-- /Features Details Section -->
+    </section><!-- /Features Details Section --> --}}
 
     <!-- Services Section -->
     <section id="services" class="services section light-background">
@@ -511,7 +505,7 @@
               <div>
                 <h3>Kebersihan dan Keamanan</h3>
                 <p>Menyediakan seluruh sistem jasa kebersihan dan keamanan yang terencana dan teruji.</p>
-                <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+                <a href="" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           </div><!-- End Service Item -->
@@ -522,7 +516,7 @@
               <div>
                 <h3>Penyedia Tenaga Kerja</h3>
                 <p>Menyediakan tenaga terlatih dengan sistem dan pengaturan yang dikelola secara langsung.</p>
-                <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+                <a href="" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           </div><!-- End Service Item -->
@@ -535,7 +529,7 @@
               <div>
                 <h3>Patroli dan Pengawasan</h3>
                 <p>Menyediakan sistem pengawasan yang terintegrasi guna meningkatkan kualitas pengawasan.</p>
-                <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+                <a href="" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           </div><!-- End Service Item -->
@@ -548,7 +542,7 @@
               <div>
                 <h3>Kepemimpinan Area</h3>
                 <p>Menyediakan pemimpin lapangan (leader) sesuai dengan kebutuhan area atau wilayah dalam perjanjian yang disepakati.</p>
-                <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+                <a href="" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           </div><!-- End Service Item -->
@@ -561,7 +555,7 @@
               <div>
                 <h3>Konsultasi dan Sistem Pelatihan</h3>
                 <p>Menyediakan konsultasi dan sistem pelatihan serta tenaga pelatih secara berkala dan terprogram.</p>
-                <a href="#" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
+                <a href="" class="read-more stretched-link">Learn More <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
           </div><!-- End Service Item -->
@@ -572,7 +566,7 @@
 
     </section><!-- /Services Section -->
 
-    <!-- More Features Section -->
+    {{-- <!-- More Features Section -->
     <section id="more-features" class="more-features section">
 
       <div class="container">
@@ -629,9 +623,9 @@
 
       </div>
 
-    </section><!-- /More Features Section -->
+    </section><!-- /More Features Section --> --}}
 
-    <!-- Pricing Section -->
+    {{-- <!-- Pricing Section -->
     <section id="pricing" class="pricing section">
 
       <!-- Section Title -->
@@ -706,7 +700,7 @@
 
       </div>
 
-    </section><!-- /Pricing Section -->
+    </section><!-- /Pricing Section --> --}}
 
     <!-- Faq Section -->
     <section id="faq" class="faq section">
@@ -914,8 +908,8 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Contact</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <h2>Hubungi Kami</h2>
+        <p>Silakan hubungi kami untuk informasi lebih lanjut. Kami dengan senang hati akan membantu!</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -925,24 +919,24 @@
           <div class="col-lg-6">
             <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
               <i class="bi bi-geo-alt"></i>
-              <h3>Address</h3>
-              <p>A108 Adam Street, New York, NY 535022</p>
+              <h3>Alamat</h3>
+              <p>Jl. HOS COKROAMINOTO 34 Kel. Jember Kidul, Kec. Kaliwates Kab. Jember</p>
             </div>
           </div><!-- End Info Item -->
 
           <div class="col-lg-3 col-md-6">
             <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
               <i class="bi bi-telephone"></i>
-              <h3>Call Us</h3>
-              <p>+1 5589 55488 55</p>
+              <h3>Hubungi Kami</h3>
+              <p>+62 812 31565669</p>
             </div>
           </div><!-- End Info Item -->
 
           <div class="col-lg-3 col-md-6">
             <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="400">
               <i class="bi bi-envelope"></i>
-              <h3>Email Us</h3>
-              <p>info@example.com</p>
+              <h3>Email Kami</h3>
+              <p>beck.stafflink@gmail.com</p>
             </div>
           </div><!-- End Info Item -->
 
@@ -950,7 +944,7 @@
 
         <div class="row gy-4 mt-1">
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" frameborder="0" style="border:0; width: 100%; height: 400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3753.8852475011786!2d113.6912753!3d-8.173211400000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd69418037cd403%3A0x40f23b0c8272d7e2!2sJl.%20HOS%20Cokroaminoto%20No.34%2C%20Kelurahan%20Jember%20Kidu%2C%20Jember%20Kidul%2C%20Kec.%20Kaliwates%2C%20Kabupaten%20Jember%2C%20Jawa%20Timur%2068131!5e1!3m2!1sid!2sid!4v1741915437271!5m2!1sid!2sid" frameborder="0" style="border:0; width: 100%; height: 400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div><!-- End Google Maps -->
 
           <div class="col-lg-6">
@@ -978,7 +972,7 @@
                   <div class="error-message"></div>
                   <div class="sent-message">Your message has been sent. Thank you!</div>
 
-                  <button type="submit">Send Message</button>
+                  <button type="submit">Kirim Pesan</button>
                 </div>
 
               </div>
@@ -999,13 +993,13 @@
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
           <a href="index.html" class="logo d-flex align-items-center">
-            <span class="sitename">QuickStart</span>
+            <img src="{{asset('assets/img/logo.png')}}" alt="">
           </a>
           <div class="footer-contact pt-3">
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
-            <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-            <p><strong>Email:</strong> <span>info@example.com</span></p>
+            <p>Jl. HOS COKROAMINOTO 34 Kel. Jember Kidul</p>
+            <p>Kec. Kaliwates Kab. Jember</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+62 812 31565669</span></p>
+            <p><strong>Email:</strong> <span>beck.stafflink@gmail.com</span></p>
           </div>
           <div class="social-links d-flex mt-4">
             <a href=""><i class="bi bi-twitter-x"></i></a>
@@ -1016,13 +1010,13 @@
         </div>
 
         <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Useful Links</h4>
+          <h4>Menu</h4>
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
+            <li><a href="#" class="active">Beranda</a></li>
+            <li><a href="#about">Tentang Kami</a></li>
+            <li><a href="#features">Visi & Misi</a></li>
+            <li><a href="#services">Layanan</a></li>
+            <li><a href="#contact">Hubungi Kami</a></li>
           </ul>
         </div>
 
