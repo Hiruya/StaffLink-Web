@@ -113,19 +113,16 @@ new #[Layout('components.layouts.auth')] class extends Component {
         <flux:checkbox wire:model="remember" :label="__('Ingat saya')" />
 
         <div class="flex items-center justify-end">
-            <flux:button type="submit" class="w-full" style="background-color: #23439C; color: white; transition: background 0.3s;"
-    onmouseover="this.style.backgroundColor='#1C357D'"
-    onmouseout="this.style.backgroundColor='#23439C'">
-    {{ __('Log in') }}
-</flux:button>
-
+            <flux:button type="submit" class="w-full" style="background-color: #23439C; color: white; transition: background 0.3s;" onmouseover="this.style.backgroundColor='#1C357D'" onmouseout="this.style.backgroundColor='#23439C'">
+            {{ __('Log in') }}
+            </flux:button>
         </div>
     </form>
 
     @if (Route::has('register'))
         <div class="space-x-1 text-center text-sm text-zinc-600 dark:text-zinc-400">
             {{ __('Belum punya akun?') }}
-            <flux:link :href="route('register')">{{ __('Sign up') }}</flux:link>
+            <flux:link :href="route('register')" wire:navigate>{{ __('Sign up') }}</flux:link>
         </div>
     @endif
 </div>
