@@ -909,7 +909,7 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Hubungi Kami</h2>
-        <p>Silakan hubungi kami untuk informasi lebih lanjut. Kami dengan senang hati akan membantu!</p>
+        <p>Silakan hubungi kami untuk informasi lebih lanjut. Kami akan dengan senang hati akan membantu!</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
