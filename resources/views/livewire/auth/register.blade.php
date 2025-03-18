@@ -36,7 +36,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 }; ?>
 
 <div class="flex flex-col gap-6">
-    <x-auth-header :title="__('Create an account')" :description="__('Enter your details below to create your account')" />
+    <x-auth-header :title="__('Sign Up')" :description="__('Masukkan detail Anda di bawah ini untuk membuat akun')" />
 
     <!-- Session Status -->
     <x-auth-session-status class="text-center" :status="session('status')" />
@@ -45,18 +45,18 @@ new #[Layout('components.layouts.auth')] class extends Component {
         <!-- Name -->
         <flux:input
             wire:model="name"
-            :label="__('Name')"
+            :label="__('Nama')"
             type="text"
             required
             autofocus
             autocomplete="name"
-            :placeholder="__('Full name')"
+            :placeholder="__('Nama lengkap')"
         />
 
         <!-- Email Address -->
         <flux:input
             wire:model="email"
-            :label="__('Email address')"
+            :label="__('Email')"
             type="email"
             required
             autocomplete="email"
@@ -76,22 +76,22 @@ new #[Layout('components.layouts.auth')] class extends Component {
         <!-- Confirm Password -->
         <flux:input
             wire:model="password_confirmation"
-            :label="__('Confirm password')"
+            :label="__('Konfirmasi password')"
             type="password"
             required
             autocomplete="new-password"
-            :placeholder="__('Confirm password')"
+            :placeholder="__('Konfirmasi password')"
         />
 
         <div class="flex items-center justify-end">
             <flux:button type="submit" class="w-full" style="background-color: #23439C; color: white; transition: background 0.3s;" onmouseover="this.style.backgroundColor='#1C357D'" onmouseout="this.style.backgroundColor='#23439C'">
-                {{ __('Create account') }}
+                {{ __('Sign Up') }}
             </flux:button>
         </div>
     </form>
 
     <div class="space-x-1 text-center text-sm text-zinc-600 dark:text-zinc-400">
-        {{ __('Already have an account?') }}
+        {{ __('Sudah punya akun?') }}
         <flux:link :href="route('login')" wire:navigate>{{ __('Log in') }}</flux:link>
     </div>
 </div>

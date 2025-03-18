@@ -74,7 +74,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 }; ?>
 
 <div class="flex flex-col gap-6">
-    <x-auth-header :title="__('Masuk ke akun Anda')" :description="__('Masukkan email dan kata sandi Anda untuk masuk')" />
+    <x-auth-header :title="__('Log in')" :description="__('Masukkan email dan kata sandi Anda untuk masuk')" />
 
     <!-- Session Status -->
     <x-auth-session-status class="text-center" :status="session('status')" />
