@@ -776,15 +776,15 @@
 
     </section><!-- /Faq Section -->
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials section light-background">
+  <!-- Testimonials Section -->
+      <section id="testimonials" class="testimonials section light-background">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Testimonials</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-      </div><!-- End Section Title -->
-
+        <h2>Testimoni</h2>
+        <p>Dengarkan apa yang dikatakan mitra kerja kami tentang pengalaman mereka dengan PT Cipta Bumi Prawara (StaffLink)</p>
+      </div>
+      <!-- End Section Title -->
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
         <div class="swiper init-swiper">
@@ -815,86 +815,86 @@
           </script>
           <div class="swiper-wrapper">
 
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                </p>
-                <div class="profile mt-auto">
-                  <img src="{{asset('assets/img/testimonials/testimonials-1.jpg')}}" class="testimonial-img" alt="">
-                  <h3>Saul Goodman</h3>
-                  <h4>Ceo &amp; Founder</h4>
-                </div>
+          <div class="swiper-slide">
+            <div class="testimonial-item">
+              <div class="stars">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
               </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                </p>
-                <div class="profile mt-auto">
-                  <img src="{{asset('assets/img/testimonials/testimonials-2.jpg')}}" class="testimonial-img" alt="">
-                  <h3>Sara Wilsson</h3>
-                  <h4>Designer</h4>
-                </div>
+              <p>
+                "Layanan tenaga alih daya dari PT Cipta Bumi Prawara (StaffLink) sangat membantu kami dalam meningkatkan efisiensi operasional. Tenaga kerja mereka terlatih dan profesional, sehingga kami dapat fokus pada bisnis utama kami."
+              </p>
+              <div class="profile mt-auto">
+                <img src="{{asset('assets/img/testimonials/testimonials-1.jpg')}}" class="testimonial-img" alt="">
+                <h3>Andi Prasetyo</h3>
+                <h4>Manajer Operasional</h4>
               </div>
-            </div><!-- End testimonial item -->
+            </div>
+          </div><!-- End testimonial item -->
 
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <div class="stars">
+                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                  </div>
+                  <p>
+                    "Pelayanan yang diberikan oleh StaffLink sangat memuaskan. Mereka memiliki sistem yang terintegrasi dan selalu siap membantu kami dalam berbagai kebutuhan, dari kebersihan hingga keamanan."
+                  </p>
+                  <div class="profile mt-auto">
+                    <img src="{{asset('assets/img/testimonials/testimonials-2.jpg')}}" class="testimonial-img" alt="">
+                    <h3>Siti Nurhaliza</h3>
+                    <h4>Direktur </h4>
+                  </div>
                 </div>
-                <p>
-                  Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                </p>
-                <div class="profile mt-auto">
-                  <img src="{{asset('assets/img/testimonials/testimonials-3.jpg')}}" class="testimonial-img" alt="">
-                  <h3>Jena Karlis</h3>
-                  <h4>Store Owner</h4>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
+              </div><!-- End testimonial item -->
 
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <div class="stars">
+                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                  </div>
+                  <p>
+                    "StaffLink telah menjadi mitra yang sangat berharga bagi kami. Dengan layanan One Stop Service mereka, kami dapat menghemat waktu dan biaya, serta meningkatkan produktivitas tim kami."
+                  </p>
+                  <div class="profile mt-auto">
+                    <img src="{{asset('assets/img/testimonials/testimonials-3.jpg')}}" class="testimonial-img" alt="">
+                    <h3>Budi Santoso</h3>
+                    <h4>CEO Perusahaan</h4>
+                  </div>
                 </div>
-                <p>
-                  Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                </p>
-                <div class="profile mt-auto">
-                  <img src="{{asset('assets/img/testimonials/testimonials-4.jpg')}}" class="testimonial-img" alt="">
-                  <h3>Matt Brandon</h3>
-                  <h4>Freelancer</h4>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
+              </div><!-- End testimonial item -->
 
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <div class="stars">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                </div>
-                <p>
-                  Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                </p>
-                <div class="profile mt-auto">
-                  <img src="{{asset('assets/img/testimonials/testimonials-5.jpg')}}" class="testimonial-img" alt="">
-                  <h3>John Larson</h3>
-                  <h4>Entrepreneur</h4>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
 
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <div class="stars">
+                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                  </div>
+                  <p>
+                    "Layanan keamanan dari StaffLink sangat memuaskan. Mereka selalu siap sedia dan memberikan rasa aman bagi karyawan dan tamu kami. Kami merasa lebih tenang dengan adanya mereka."
+                  </p>
+                  <div class="profile mt-auto">
+                    <img src="{{asset('assets/img/testimonials/testimonials-4.jpg')}}" class="testimonial-img" alt="">
+                    <h3>Rina Amelia</h3>
+                    <h4>Manajer Keamanan</h4>
+                  </div>
+                </div>
+              </div><!-- End testimonial item -->
+
+              <div class="swiper-slide">
+                  <div class="testimonial-item">
+                    <div class="stars">
+                      <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                    </div>
+                    <p>
+                      "Pengalaman bekerja dengan PT Cipta Bumi Prawara (StaffLink) sangat memuaskan. Mereka selalu memberikan solusi yang tepat dan cepat dalam setiap proyek yang kami jalankan."
+                    </p>
+                    <div class="profile mt-auto">
+                      <img src="{{asset('assets/img/testimonials/testimonials-7.jpg')}}" class="testimonial-img" alt="">
+                      <h3>Sarah Johnson</h3>
+                      <h4>CEO</h4>
+                    </div>
+                  </div>
+                </div><!-- End testimonial item -->
           </div>
           <div class="swiper-pagination"></div>
         </div>
