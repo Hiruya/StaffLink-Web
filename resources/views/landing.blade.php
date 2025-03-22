@@ -1021,29 +1021,20 @@
         </div>
 
         <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Our Services</h4>
+          <h4>Layana Kami</h4>
           <ul>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">Product Management</a></li>
-            <li><a href="#">Marketing</a></li>
-            <li><a href="#">Graphic Design</a></li>
+            <li><a href="#services">Kebersihan dan Keamanan</a></li>
+            <li><a href="#services">Penyedia Tenaga Kerja</a></li>
+            <li><a href="#services">Patroli dan Pengawasan </a></li>
+            <li><a href="#services"> Kepemimpinan Area</a></li>
+            <li><a href="#services">Konsultasi dan Sistem Pelatihan</a></li>
           </ul>
         </div>
 
         <div class="col-lg-4 col-md-12 footer-newsletter">
-          <h4>Tentang Kami</h4>
-          <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
-          <form action="forms/newsletter.php" method="post" class="php-email-form">
-            <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
-            <div class="loading">Loading</div>
-            <div class="error-message"></div>
-            <div class="sent-message">Your subscription request has been sent. Thank you!</div>
-          </form>
+          <h4>Tentang StaffLink</h4>
+          <p>StaffLink merupakan sarana Outsourcing yang menyediakan layanan rekrutmen dan tenaga kerja profesional di berbagai sektor. Dengan tenaga kerja terlatih dan layanan terintegrasi, kami membantu bisnis lebih fokus dan efisien. “Support Your System” mencerminkan komitmen kami dalam memberikan solusi tenaga kerja berkualitas.</p>
         </div>
-
-      </div>
-    </div>
 
     <div class="container copyright text-center mt-4">
       <p>© <span>Copyright</span> <strong class="px-1 sitename">QuickStart</strong><span>All Rights Reserved</span></p>
