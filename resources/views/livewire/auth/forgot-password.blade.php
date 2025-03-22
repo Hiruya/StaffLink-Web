@@ -39,7 +39,10 @@ new #[Layout('components.layouts.auth')] class extends Component {
             placeholder="email@example.com"
         />
 
-        <flux:button variant="primary" type="submit" class="w-full">{{ __('Email password reset link') }}</flux:button>
+        <flux:button type="submit" class="w-full" style="background-color: #23439C; color: white; transition: background 0.3s;"
+    onmouseover="this.style.backgroundColor='#1C357D'"
+    onmouseout="this.style.backgroundColor='#23439C'">
+    {{ __('Email password reset link') }}</flux:button>
     </form>
 
     <div class="space-x-1 text-center text-sm text-zinc-400">
