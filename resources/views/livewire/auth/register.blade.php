@@ -86,6 +86,8 @@ new #[Layout('components.layouts.auth')] class extends Component {
         <div class="flex items-center justify-end">
             <flux:button type="submit" class="w-full" style="background-color: #23439C; color: white; transition: background 0.3s;" onmouseover="this.style.backgroundColor='#1C357D'" onmouseout="this.style.backgroundColor='#23439C'">
                 {{ __('Sign Up') }}
+            {{-- <flux:button type="submit" class="w-full" style="background-color: #23439C; color: white; transition: background 0.3s;" onmouseover="this.style.backgroundColor='#1C357D'" onmouseout="this.style.backgroundColor='#23439C'">
+                {{ __('Sign Up') }} --}}
             </flux:button>
         </div>
     </form>
