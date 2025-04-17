@@ -703,78 +703,72 @@
     </section><!-- /Pricing Section --> --}}
 
     <!-- Faq Section -->
-    <section id="faq" class="faq section">
+<section id="faq" class="faq section">
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Frequently Asked Questions</h2>
-      </div><!-- End Section Title -->
+<!-- Section Title -->
+<div class="container section-title" data-aos="fade-up">
+  <h2>Frequently Asked Questions</h2>
+</div><!-- End Section Title -->
 
-      <div class="container">
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
 
-        <div class="row justify-content-center">
+      <div class="faq-container">
 
-          <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
+        <div class="faq-item faq-active">
+          <h3>Apa itu StaffLink?</h3>
+          <div class="faq-content">
+            <p>StaffLink adalah nama brand dari PT. Cipta Bumi Prawara, perusahaan penyedia tenaga alih daya (outsourcing) yang berdiri sejak 2021 dan berkomitmen menyediakan layanan terintegrasi seperti hospitality, cleaning, security, support, dan marketing service untuk berbagai sektor.</p>
+          </div>
+          <i class="faq-toggle bi bi-chevron-right"></i>
+        </div><!-- End Faq item-->
 
-            <div class="faq-container">
+        <div class="faq-item">
+          <h3>Layanan apa saja yang disediakan oleh StaffLink?</h3>
+          <div class="faq-content">
+            <p>StaffLink menyediakan One Stop Service yang mencakup layanan Hospitality, Facility, Cleaning, Security, Support, dan Marketing Service untuk perkantoran, rumah sakit, perumahan, sekolah, kampus, tempat ibadah, dan lainnya.</p>
+          </div>
+          <i class="faq-toggle bi bi-chevron-right"></i>
+        </div><!-- End Faq item-->
 
-              <div class="faq-item faq-active">
-                <h3>Non consectetur a erat nam at lectus urna duis?</h3>
-                <div class="faq-content">
-                  <p>Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
+        <div class="faq-item">
+          <h3>Bagaimana kualitas dan keamanan tenaga kerja StaffLink?</h3>
+          <div class="faq-content">
+            <p>StaffLink melatih tenaga kerjanya secara berkala dengan program pelatihan seperti leadership, excellent service, bela diri, dan lainnya, serta memiliki sistem pengawasan dan evaluasi rutin untuk memastikan SOP dijalankan dengan baik.</p>
+          </div>
+          <i class="faq-toggle bi bi-chevron-right"></i>
+        </div><!-- End Faq item-->
 
-              <div class="faq-item">
-                <h3>Feugiat scelerisque varius morbi enim nunc faucibus?</h3>
-                <div class="faq-content">
-                  <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
+        <div class="faq-item">
+          <h3>Apakah StaffLink menyediakan sistem digital untuk monitoring?</h3>
+          <div class="faq-content">
+            <p>Ya, StaffLink didukung oleh sistem pengawasan dan komunikasi terpadu berbasis digital yang mempermudah pengontrolan kinerja di lapangan secara online dan real-time.</p>
+          </div>
+          <i class="faq-toggle bi bi-chevron-right"></i>
+        </div><!-- End Faq item-->
 
-              <div class="faq-item">
-                <h3>Dolor sit amet consectetur adipiscing elit pellentesque?</h3>
-                <div class="faq-content">
-                  <p>Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
+        <div class="faq-item">
+          <h3>Apa yang membedakan StaffLink dengan penyedia jasa lainnya?</h3>
+          <div class="faq-content">
+            <p>Keunggulan StaffLink meliputi: pelatihan rutin, pengawasan ketat, biaya kompetitif, garansi penggantian tenaga kerja dalam 1x24 jam jika tidak sesuai SOP, dan layanan terpadu yang fleksibel sesuai kebutuhan mitra.</p>
+          </div>
+          <i class="faq-toggle bi bi-chevron-right"></i>
+        </div><!-- End Faq item-->
 
-              <div class="faq-item">
-                <h3>Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?</h3>
-                <div class="faq-content">
-                  <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>Tempus quam pellentesque nec nam aliquam sem et tortor?</h3>
-                <div class="faq-content">
-                  <p>Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>Perspiciatis quod quo quos nulla quo illum ullam?</h3>
-                <div class="faq-content">
-                  <p>Enim ea facilis quaerat voluptas quidem et dolorem. Quis et consequatur non sed in suscipit sequi. Distinctio ipsam dolore et.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-            </div>
-
-          </div><!-- End Faq Column-->
-
-        </div>
+        <div class="faq-item">
+          <h3>Apakah StaffLink mendukung program ramah lingkungan?</h3>
+          <div class="faq-content">
+            <p>Ya, melalui program Green World, StaffLink menggunakan bahan pembersih ramah lingkungan, hemat penggunaan plastik & kertas, serta berkomitmen terhadap keselamatan kerja dan kesehatan lingkungan kerja.</p>
+          </div>
+          <i class="faq-toggle bi bi-chevron-right"></i>
+        </div><!-- End Faq item-->
 
       </div>
-
-    </section><!-- /Faq Section -->
+    </div>
+  </div>
+</div>
+</section><!-- End Faq Section -->
 
   <!-- Testimonials Section -->
       <section id="testimonials" class="testimonials section light-background">
