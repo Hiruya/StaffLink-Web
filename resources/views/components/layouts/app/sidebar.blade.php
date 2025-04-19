@@ -19,7 +19,7 @@
             <flux:navlist variant="outline" icon="folder" x-data="{ open: false }">
                 <flux:navlist.group>
                     <button @click="open = ! open" class="flex items-center w-full text-left">
-                    <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Master') }}</flux:navlist.item>
+                    <flux:navlist.item icon="folder" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Master') }}</flux:navlist.item>
                     <x-icon name="chevron-down" class="ml-auto shrink-0" x-bind:class="{ 'rotate-180': open }" />
                 </flux:navlist.group >
                 </button>
@@ -30,12 +30,12 @@
             </flux:navlist>
             <flux:navlist variant="outline">
                 <flux:navlist.group>
-                    <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Visualisasi Data') }}</flux:navlist.item>
+                    <flux:navlist.item icon="chart-bar" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Visualisasi Data') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
             <flux:navlist variant="outline">
                 <flux:navlist.group>
-                    <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Klasifikasi Data') }}</flux:navlist.item>
+                    <flux:navlist.item icon="clipboard" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Prediksi') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 
