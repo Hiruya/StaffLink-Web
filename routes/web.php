@@ -39,7 +39,8 @@ Route::get('/jadwal', [JadwalController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('jadwal.index');
 
-
+    Route::get('/absensi/download
+    ', [AbsensiController::class, 'downloadPDF'])->name('absensi.download');
 
 });
 
