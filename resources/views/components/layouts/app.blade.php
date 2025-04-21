@@ -1,5 +1,6 @@
 <x-layouts.app.sidebar :title="$title ?? null">
-    <flux:main>
+    <main class="p-4"> {{-- optional class styling --}}
         {{ $slot }}
-    </flux:main>
+        @stack('scripts')
+    </main>
 </x-layouts.app.sidebar>
