@@ -22,7 +22,7 @@
                 <flux:navlist variant="outline" icon="folder" x-data="{ open: false }">
                     <flux:navlist.group>
                         <button @click="open = ! open" class="flex items-center w-full text-left">
-                            <flux:navlist.item icon="folder" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Master') }}</flux:navlist.item>
+                            <flux:navlist.item icon="folder" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Data Manager') }}</flux:navlist.item>
                             <x-icon name="chevron-down" class="ml-auto shrink-0" x-bind:class="{ 'rotate-180': open }" />
                         </flux:navlist.group>
                     </button>
@@ -31,11 +31,18 @@
                         <flux:navlist.item :href="route('jadwal.index')" :current="request()->routeIs('jadwal.*')" wire:navigate class="pl-2">{{ __('Jadwal') }}</flux:navlist.item>
                     </div>
                 </flux:navlist>
-
-                <flux:navlist variant="outline">
+                
+                <flux:navlist variant="outline" icon="folder" x-data="{ open: false }">
                     <flux:navlist.group>
-                        <flux:navlist.item icon="chart-bar" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Visualisasi Data') }}</flux:navlist.item>
-                    </flux:navlist.group>
+                        <button @click="open = ! open" class="flex items-center w-full text-left">
+                            <flux:navlist.item icon="folder" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Data Karyawan') }}</flux:navlist.item>
+                            <x-icon name="chevron-down" class="ml-auto shrink-0" x-bind:class="{ 'rotate-180': open }" />
+                        </flux:navlist.group>
+                    </button>
+                    <div x-show="open" class="mt-1 ml-4 space-y-1">
+                        <flux:navlist.item :href="route('absensi.index')" :current="request()->routeIs('absensi.*')" wire:navigate class="pl-2">{{ __('Absensi') }}</flux:navlist.item>
+                        <flux:navlist.item :href="route('jadwal.index')" :current="request()->routeIs('jadwal.*')" wire:navigate class="pl-2">{{ __('Jadwal') }}</flux:navlist.item>
+                    </div>
                 </flux:navlist>
 
                 <flux:navlist variant="outline">
