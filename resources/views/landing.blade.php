@@ -381,7 +381,7 @@
                 <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
                   <i class="bi bi-box-seam"></i>
                   <div>
-                    <h4 class="d-none d-lg-block">Memberikan kualitas pelayanan yang memuaskan kepada konsumen <br>(Customer Satisfaction) dengan menyiapkan tim yang memiliki <br>karakter yang berkualitas.</h4>
+                    <h4 class="d-none d-lg-block">Memberikan pelayanan memuaskan kepada konsumen (Customer Satisfaction) dengan menyiapkan tim yang berkualitas.</h4>
                   </div>
                 </a>
               </li>
@@ -883,7 +883,7 @@
                       "Pengalaman bekerja dengan PT Cipta Bumi Prawara (StaffLink) sangat memuaskan. Mereka selalu memberikan solusi yang tepat dan cepat dalam setiap proyek yang kami jalankan."
                     </p>
                     <div class="profile mt-auto">
-                      <img src="{{asset('assets/img/testimonials/testimonials-7.jpg')}}" class="testimonial-img" alt="">
+                      <img src="{{asset('assets/img/testimonials/testimonials-5.jpg')}}" class="testimonial-img" alt="">
                       <h3>Sarah Johnson</h3>
                       <h4>CEO</h4>
                     </div>
