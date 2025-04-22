@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
+use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\JadwalController;
+
+
 
 Route::get('/', function () {
     return view('landing');
@@ -27,6 +31,25 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
     Volt::route('/login', 'auth.login')->name('login');
 
+Route::get('/absensi', [AbsensiController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('absensi.index');
+
+Route::get('/jadwal', [JadwalController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('jadwal.index');
+
+    Route::get('/absensi/download
+    ', [AbsensiController::class, 'downloadPDF'])->name('absensi.download');
+
+    // Route untuk halaman View Absensi
+Route::get('absensi/{id}', [AbsensiController::class, 'show'])->name('absensi.view');
+
+// Route untuk halaman Edit Absensi
+Route::get('absensi/{id}/edit', [AbsensiController::class, 'edit'])->name('absensi.edit');
+
+// Tambahkan route untuk update data absensi jika Anda membutuhkan post data
+Route::put('absensi/{id}', [AbsensiController::class, 'update'])->name('absensi.update');
 });
 
 require __DIR__.'/auth.php';
