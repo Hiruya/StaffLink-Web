@@ -52,4 +52,8 @@ Route::get('absensi/{id}/edit', [AbsensiController::class, 'edit'])->name('absen
 Route::put('absensi/{id}', [AbsensiController::class, 'update'])->name('absensi.update');
 });
 
+// Route untuk jadwal
+Route::resource('jadwal', JadwalController::class);
+Route::post('/jadwal/bulk-delete', [JadwalController::class, 'bulkDelete'])->name('jadwal.bulkDelete');
+
 require __DIR__.'/auth.php';
