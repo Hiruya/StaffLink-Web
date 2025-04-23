@@ -13,27 +13,27 @@ new #[Layout('components.layouts.auth')] class extends Component {
     public string $email = '';
     public string $password = '';
     public string $password_confirmation = '';
+    public string $department = ''; // Tambahan: departemen
 
-    /**
-     * Handle an incoming registration request.
-     */
     public function register(): void
     {
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
+            'department' => ['required', 'string', 'max:255'],
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
 
-        event(new Registered(($user = User::create($validated))));
+        event(new Registered($user = User::create($validated)));
 
         Auth::login($user);
 
         $this->redirectIntended(route('dashboard', absolute: false), navigate: true);
     }
-}; ?>
+};
+?>
 
 <div class="flex flex-col gap-6">
     <x-auth-header :title="__('Sign Up')" :description="__('Masukkan detail Anda di bawah ini untuk membuat akun')" />
@@ -53,7 +53,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
             :placeholder="__('Nama lengkap')"
         />
 
-        <!-- Email Address -->
+        <!-- Email -->
         <flux:input
             wire:model="email"
             :label="__('Email')"
@@ -76,11 +76,21 @@ new #[Layout('components.layouts.auth')] class extends Component {
         <!-- Confirm Password -->
         <flux:input
             wire:model="password_confirmation"
-            :label="__('Konfirmasi password')"
+            :label="__('Konfirmasi Password')"
             type="password"
             required
             autocomplete="new-password"
-            :placeholder="__('Konfirmasi password')"
+            :placeholder="__('Konfirmasi Password')"
+        />
+
+        <!-- Department -->
+        <flux:input
+            wire:model="department"
+            :label="__('Departemen')"
+            type="text"
+            required
+            autocomplete="organization"
+            :placeholder="__('Nama Departemen')"
         />
 
         <div class="flex items-center justify-end">

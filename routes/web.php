@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\DashboardController;
+
 
 
 
@@ -50,6 +52,10 @@ Route::get('absensi/{id}/edit', [AbsensiController::class, 'edit'])->name('absen
 
 // Tambahkan route untuk update data absensi jika Anda membutuhkan post data
 Route::put('absensi/{id}', [AbsensiController::class, 'update'])->name('absensi.update');
+
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 });
 
 require __DIR__.'/auth.php';

@@ -70,7 +70,9 @@
                                     <div class="grid flex-1 text-left text-sm leading-tight">
                                         <span class="truncate font-semibold">{{ auth()->user()->name }}</span>
                                         <span class="truncate text-xs">{{ auth()->user()->email }}</span>
+                                        <span class="truncate text-xs text-zinc-500">{{ auth()->user()->department }}</span>
                                     </div>
+
                                 </div>
                             </div>
                         </flux:menu.radio.group>
