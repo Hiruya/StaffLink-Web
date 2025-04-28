@@ -58,4 +58,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 });
 
+// Route untuk jadwal
+Route::resource('jadwal', JadwalController::class);
+Route::post('/jadwal/bulk-delete', [JadwalController::class, 'bulkDelete'])->name('jadwal.bulkDelete');
+
 require __DIR__.'/auth.php';
