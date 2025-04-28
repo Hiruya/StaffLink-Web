@@ -29,13 +29,15 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
-            RateLimiter::hit($this->throttleKey());
-
-            throw ValidationException::withMessages([
-                'email' => __('auth.failed'),
-            ]);
-        }
+        if (! Auth::guard('web')->attempt([
+        'email' => $this->email,
+        'password' => $this->password
+    ], $this->remember)) {
+        RateLimiter::hit($this->throttleKey());
+        throw ValidationException::withMessages([
+            'email' => __('auth.failed'),
+        ]);
+    }
 
         RateLimiter::clear($this->throttleKey());
         Session::regenerate();

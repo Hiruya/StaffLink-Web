@@ -1,9 +1,25 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Livewire\Admin\AssignUserRole;
 use App\Http\Controllers\JadwalController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
+
+// User routes
+Route::prefix('users')->group(function () {
+    Route::get('/{user}', [UserController::class, 'show'])->name('users.show');
+    Route::get('/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::put('/{user}/reset-password', [UserController::class, 'resetPassword'])->name('users.reset-password');
+    Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::middleware(['auth', 'admin'])->get('/admin/assign-role', AssignUserRole::class)
+        ->name('admin.assign-role');
+    // Add this if you need an index route
+    // Route::get('/', [UserController::class, 'index'])->name('users.index');
+});
+
 
 // Route untuk user yang belum login (guest)
 Route::middleware('guest')->group(function () {

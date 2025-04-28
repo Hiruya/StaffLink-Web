@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'sqlite'),
+    'default' => env('DB_CONNECTION'),
 
     /*
     |--------------------------------------------------------------------------
@@ -111,6 +111,17 @@ return [
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
+
+        'mongodb' => [
+            'driver' => 'mongodb',
+            'dsn' => env('DB_URI'),
+            'database' => 'stafflink',
+            'options' => [
+                'connectTimeoutMS' => 30000,
+                'socketTimeoutMS' => 30000,
+                'serverSelectionTimeoutMS' => 5000,
+            ],
+          ],
 
     ],
 
