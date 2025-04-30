@@ -6,6 +6,7 @@ use App\Models\Absensi;
 use Illuminate\Http\Request;
 use PDF;
 
+
 class AbsensiController extends Controller
 {
     // Menampilkan semua data absensi
