@@ -13,7 +13,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
     public string $email = '';
     public string $password = '';
     public string $password_confirmation = '';
-    public string $department = ''; // Tambahan: departemen
+    // public string $department = ''; // Tambahan: departemen
 
     public function register(): void
     {
@@ -21,7 +21,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
-            'department' => ['required', 'string', 'max:255'],
+            // 'department' => ['required', 'string', 'max:255'],
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
@@ -83,7 +83,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
             :placeholder="__('Konfirmasi Password')"
         />
 
-        <!-- Department -->
+        <!-- Department
         <flux:input
             wire:model="department"
             :label="__('Departemen')"
@@ -91,7 +91,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
             required
             autocomplete="organization"
             :placeholder="__('Nama Departemen')"
-        />
+        /> -->
 
         <div class="flex items-center justify-end">
             <flux:button type="submit" class="w-full" style="background-color: #23439C; color: white; transition: background 0.3s;" onmouseover="this.style.backgroundColor='#1C357D'" onmouseout="this.style.backgroundColor='#23439C'">
