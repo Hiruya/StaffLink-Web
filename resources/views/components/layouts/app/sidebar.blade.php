@@ -40,6 +40,9 @@
                         <flux:navlist.item :href="route('jadwal.index')" :current="request()->routeIs('jadwal.*')" wire:navigate class="pl-2">
                             {{ __('Jadwal') }}
                         </flux:navlist.item>
+                        <flux:navlist.item :href="route('penilaian.index')" :current="request()->routeIs('penilaian.*')" wire:navigate class="pl-2">
+                            {{ __('Penilaian') }}
+                        </flux:navlist.item>
                     </div>
                 </flux:navlist>
 
@@ -59,6 +62,9 @@
                         </flux:navlist.item>
                         <flux:navlist.item :href="route('jadwal.index')" :current="request()->routeIs('jadwal.*')" wire:navigate class="pl-2">
                             {{ __('Jadwal') }}
+                        </flux:navlist.item>
+                        <flux:navlist.item :href="route('penilaian.index')" :current="request()->routeIs('penilaian.*')" wire:navigate class="pl-2">
+                            {{ __('Penilaian') }}
                         </flux:navlist.item>
                     </div>
                 </flux:navlist>
