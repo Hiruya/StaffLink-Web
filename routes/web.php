@@ -5,6 +5,7 @@ use Livewire\Volt\Volt;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PenilaianController;
 
 
 
@@ -55,6 +56,8 @@ Route::put('absensi/{id}', [AbsensiController::class, 'update'])->name('absensi.
 
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/penilaian', [PenilaianController::class, 'index'])->name('penilaian.index');
+Route::post('/penilaian', [PenilaianController::class, 'store'])->name('penilaian.store');
 
 });
 
