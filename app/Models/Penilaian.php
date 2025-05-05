@@ -6,17 +6,18 @@ use MongoDB\Laravel\Eloquent\Model;
 
 class Penilaian extends Model
 {
-    // Tentukan nama tabel jika tidak mengikuti konvensi
-    protected $table = 'penilaians';  // Nama tabel di database
+    // Nama tabel
+    protected $table = 'penilaians';
 
-    // Tentukan kolom yang dapat diisi massal
+    // Kolom yang dapat diisi
     protected $fillable = [
+        'kategori',
         'kompetensi',
         'metode',
         'target',
         'aktual',
-        'komentar',
+        'hasil_bobot',
         'gap',
-        'hasil_bobot'
+        'komentar',
     ];
 }
