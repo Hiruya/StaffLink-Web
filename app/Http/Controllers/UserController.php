@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Livewire\Volt\Component;
 
 class UserController extends Controller
 {
@@ -68,6 +69,6 @@ class UserController extends Controller
     {
         $user = User::findOrFail($userId);
         $user->delete();
-        return redirect()->route('users.index')->with('success', 'User deleted successfully');
+        return redirect()->route('admin.assign-role')->with('success', 'User deleted successfully');
     }
 }

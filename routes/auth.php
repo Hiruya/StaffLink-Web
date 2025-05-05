@@ -16,8 +16,6 @@ Route::prefix('users')->group(function () {
     Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::middleware(['auth', 'admin'])->get('/admin/assign-role', AssignUserRole::class)
         ->name('admin.assign-role');
-    // Add this if you need an index route
-    // Route::get('/', [UserController::class, 'index'])->name('users.index');
 });
 
 

@@ -7,7 +7,7 @@ use App\Models\User;
 
 class Absensi extends Model
 {
-    protected $table = 'absensi'; // atau 'absensi' tergantung nama tabel
+    protected $table = 'absensi';
     protected $fillable = [
         'user_id', 'tanggal', 'waktu_masuk', 'waktu_keluar', 'lokasi_masuk', 'lokasi_keluar'
     ];
