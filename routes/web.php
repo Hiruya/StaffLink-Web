@@ -7,9 +7,6 @@ use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PenilaianController;
 
-
-
-
 Route::get('/', function () {
     return view('landing');
 })->name('home');
@@ -64,5 +61,14 @@ Route::post('/penilaian', [PenilaianController::class, 'store'])->name('penilaia
 // Route untuk jadwal
 Route::resource('jadwal', JadwalController::class);
 Route::post('/jadwal/bulk-delete', [JadwalController::class, 'bulkDelete'])->name('jadwal.bulkDelete');
+
+Route::get('/test-db', function() {
+    try {
+        DB::connection('mongodb')->getMongoClient()->listDatabases();
+        return 'MongoDB connection successful!';
+    } catch (\Exception $e) {
+        return 'MongoDB connection failed: ' . $e->getMessage();
+    }
+});
 
 require __DIR__.'/auth.php';

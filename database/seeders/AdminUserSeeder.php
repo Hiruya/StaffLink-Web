@@ -18,10 +18,10 @@ class AdminUserSeeder extends Seeder
 
         // Buat user admin
         User::firstOrCreate(
-            ['email' => 'putri222@gmail.com'],
+            ['email' => 'stafflinkadmin@gmail.com'],
             [
-                'name' => 'Putri Maya',
-                'password' => Hash::make('12345678'), // Ganti sesuai kebutuhan
+                'name' => 'Admin',
+                'password' => Hash::make('stafflink'), // Ganti sesuai kebutuhan
                 'role_id' => $adminRole->_id, // MongoDB pakai _id, bukan id
             ]
         );

@@ -8,11 +8,13 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use MongoDB\Laravel\Auth\User as Authenticatable;
 use MongoDB\Laravel\Eloquent\HybridRelations;
+use Laravel\Sanctum\HasApiTokens;
+
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HybridRelations, Notifiable;
+    use HybridRelations, Notifiable, HasApiTokens;
 
     protected $connection = 'mongodb';
 
@@ -61,24 +63,6 @@ class User extends Authenticatable
             ->map(fn (string $name) => Str::of($name)->substr(0, 1))
             ->implode('');
     }
-
-    //     public function getRememberToken()
-    // {
-    //     return $this->remember_token;
-    // }
-
-    // public function setRememberToken($value)
-    // {
-    //     $this->remember_token = $value;
-
-
-    //     $this->save();
-    // }
-
-    // public function getRememberTokenName()
-    // {
-    //     return 'remember_token';
-    // }
 
     public function role()
     {
