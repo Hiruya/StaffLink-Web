@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('penilaians', function (Blueprint $table) {
             $table->id();
+            $table->string('kategori');
             $table->string('kompetensi');
             $table->string('metode');
             $table->integer('target');
             $table->integer('aktual');
-            $table->string('komentar')->nullable();
-            $table->integer('gap');
             $table->integer('hasil_bobot');
+            $table->integer('gap');
+            $table->text('komentar')->nullable();
             $table->timestamps();
         });
     }
