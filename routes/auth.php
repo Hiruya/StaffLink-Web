@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
-use App\Livewire\Admin\AssignUserRole;
 use App\Http\Controllers\JadwalController;
+use App\Livewire\Admin\AssignUserRole;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -14,10 +14,17 @@ Route::prefix('users')->group(function () {
     Route::put('/{user}', [UserController::class, 'update'])->name('users.update');
     Route::put('/{user}/reset-password', [UserController::class, 'resetPassword'])->name('users.reset-password');
     Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-    Route::middleware(['auth', 'admin'])->get('/admin/assign-role', AssignUserRole::class)
-        ->name('admin.assign-role');
+    Route::middleware(['auth', 'admin'])->get('/admin/assign-role', AssignUserRole::class)->name('admin.assign-role');
 });
 
+// // User routes
+// Route::middleware(['auth'])->prefix('users')->group(function () {
+//     Route::get('/{user}', UserShow::class)->name('users.show');
+//     Route::get('/{user}/edit', UserEdit::class)->name('users.edit');
+// });
+
+// // Admin routes
+// Route::middleware(['auth', 'admin'])->get('/admin/assign-role', AssignUserRole::class)->name('admin.assign-role');
 
 // Route untuk user yang belum login (guest)
 Route::middleware('guest')->group(function () {
