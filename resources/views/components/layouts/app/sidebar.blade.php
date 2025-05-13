@@ -72,7 +72,7 @@
                 {{-- Prediksi --}}
                 <flux:navlist variant="outline">
                     <flux:navlist.group>
-                        <flux:navlist.item icon="clipboard" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
+                        <flux:navlist.item icon="clipboard" :href="route('promotion.predict')" :current="request()->routeIs('promotion.predict')" wire:navigate>
                             {{ __('Prediksi') }}
                         </flux:navlist.item>
                     </flux:navlist.group>
