@@ -21,9 +21,9 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => \App\Http\Middleware\AdminOnly::class,
         ]);
 
-        $middleware->append([
-            \App\Http\Middleware\Cors::class,
-        ]);
+        // $middleware->append([
+        //     \App\Http\Middleware\Cors::class,
+        // ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

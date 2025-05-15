@@ -6,6 +6,7 @@ use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PenilaianController;
+use App\Http\Controllers\PromotionController;
 
 Route::get('/', function () {
     return view('landing');
@@ -70,5 +71,12 @@ Route::get('/test-db', function() {
         return 'MongoDB connection failed: ' . $e->getMessage();
     }
 });
+
+// Route untuk prediksi promosi
+Route::get('/promotion-predict', function () {return view('promotion.predict');})->name('promotion.predict');
+
+Route::post('', [PromotionController::class, 'predict']);
+Route::post('/api/predict-promotion', [PromotionController::class, 'predict'])
+    ->name('api.predict-promotion');
 
 require __DIR__.'/auth.php';
