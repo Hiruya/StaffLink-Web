@@ -7,6 +7,9 @@ use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\LaporanHarianController;
+
+
 
 Route::get('/', function () {
     return view('landing');
@@ -36,9 +39,8 @@ Route::get('/absensi', [AbsensiController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('absensi.index');
 
-Route::get('/jadwal', [JadwalController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('jadwal.index');
+Route::resource('laporanharian', LaporanHarianController::class)->middleware(['auth', 'verified']);
+
 
     Route::get('/absensi/download
     ', [AbsensiController::class, 'downloadPDF'])->name('absensi.download');
@@ -59,9 +61,7 @@ Route::post('/penilaian', [PenilaianController::class, 'store'])->name('penilaia
 
 });
 
-// Route untuk jadwal
-Route::resource('jadwal', JadwalController::class);
-Route::post('/jadwal/bulk-delete', [JadwalController::class, 'bulkDelete'])->name('jadwal.bulkDelete');
+
 
 Route::get('/test-db', function() {
     try {
