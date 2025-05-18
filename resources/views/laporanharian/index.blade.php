@@ -27,7 +27,7 @@
                     @forelse ($laporans as $laporan)
                         <tr class="hover:bg-gray-50 dark:hover:bg-neutral-700 align-top">
                             <td class="px-4 py-2 break-words">{{ $laporan->email }}</td>
-                            <td class="px-4 py-2">{{ $laporan->tanggal->format('d-m-Y') }}</td>
+                            <td class="px-4 py-2">{{ \Carbon\Carbon::parse($laporan->tanggal)->format('d-m-Y') }}</td>
                             <td class="px-4 py-2">{{ $laporan->nama }}</td>
                             <td class="px-4 py-2">{{ $laporan->departemen }}</td>
                             <td class="px-4 py-2">{{ $laporan->shift }}</td>
@@ -82,7 +82,7 @@
 </x-layouts.app>
 
 @push('scripts')
-    <!-- DataTables -->
+    <!-- DataTables CSS & JS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
@@ -107,21 +107,23 @@
                     <head>
                         <title>Cetak Laporan Harian</title>
                         <style>
-                            body { font-family: sans-serif; }
+                            body { font-family: sans-serif; margin: 20px; }
                             table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-                            th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+                            th, td { border: 1px solid #ccc; padding: 8px; text-align: left; word-wrap: break-word; }
                             th { background-color: #f2f2f2; }
+                            h2 { text-align: center; }
                         </style>
                     </head>
                     <body>
-                        <h2 style="text-align: center;">Laporan Pekerjaan Harian</h2>
+                        <h2>Laporan Pekerjaan Harian</h2>
                         ${printContents}
                     </body>
                 </html>
             `;
             window.print();
-            document.body.innerHTML = originalContents;
-            location.reload();
+
+            // Setelah print, reload halaman agar JS dan event kembali normal
+            window.location.reload();
         }
     </script>
 @endpush

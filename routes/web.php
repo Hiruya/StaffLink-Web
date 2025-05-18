@@ -8,6 +8,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\LaporanHarianController;
+use App\Models\LaporanHarian;
+
 
 
 
@@ -27,6 +29,10 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+
+Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/grafik-promosi', [DashboardController::class, 'getGrafikPromosi']);
+
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
@@ -41,9 +47,14 @@ Route::get('/absensi', [AbsensiController::class, 'index'])
 
 Route::resource('laporanharian', LaporanHarianController::class)->middleware(['auth', 'verified']);
 
+Route::get('/report-data', function () {
+    $laporans = LaporanHarian::latest()->get();
+    return response()->json($laporans);
+});
 
-    Route::get('/absensi/download
-    ', [AbsensiController::class, 'downloadPDF'])->name('absensi.download');
+
+
+Route::get('/absensi/download', [AbsensiController::class, 'downloadPDF'])->name('absensi.download');
 
     // Route untuk halaman View Absensi
 Route::get('absensi/{id}', [AbsensiController::class, 'show'])->name('absensi.view');

@@ -11,6 +11,8 @@ class Penilaian extends Model
 
     // Kolom yang dapat diisi
     protected $fillable = [
+        'nama',
+        'departemen',
         'kategori',
         'kompetensi',
         'metode',

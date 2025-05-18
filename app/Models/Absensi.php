@@ -9,8 +9,7 @@ class Absensi extends Model
 {
     protected $table = 'absensi';
     protected $fillable = [
-        'user_id', 'tanggal', 'waktu_masuk', 'waktu_keluar', 'lokasi_masuk', 'lokasi_keluar'
-    ];
+        'user_id', 'tanggal', 'waktu_masuk', 'waktu_keluar'];
 
     public function user()
     {
