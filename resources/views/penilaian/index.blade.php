@@ -55,22 +55,35 @@ $kategori_bobot = [
     <form method="POST" action="{{ route('penilaian.store') }}">
         @csrf
 
-        <!-- Area yang dicetak -->
-        <div id="print-area">
-            <table class="min-w-full text-sm border border-gray-300 text-gray-800 text-center mb-8">
-                <thead class="bg-blue-700 text-white">
-                    <tr>
-                        <th>No</th>
-                        <th>Kategori</th>
-                        <th class="text-left">Kompetensi</th>
-                        <th>Metode</th>
-                        <th>Target</th>
-                        <th>Aktual (1–4)</th>
-                        <th>Hasil × Bobot</th>
-                        <th>Gap</th>
-                        <th>Komentar</th>
-                    </tr>
-                </thead>
+       <!-- Area yang dicetak -->
+<div id="print-area">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div>
+            <label for="nama" class="block text-sm font-semibold text-gray-700">Nama</label>
+            <input type="text" name="nama" id="nama" class="w-full border rounded px-3 py-2" required>
+        </div>
+        <div>
+            <label for="divisi" class="block text-sm font-semibold text-gray-700">Departemen</label>
+            <input type="text" name="divisi" id="divisi" class="w-full border rounded px-3 py-2" required>
+        </div>
+    </div>
+
+    <table class="min-w-full text-sm border border-gray-300 text-gray-800 text-center mb-8">
+        <thead class="bg-blue-700 text-white">
+            <tr>
+                <th>No</th>
+                <th>Kategori</th>
+                <th class="text-left">Kompetensi</th>
+                <th>Metode</th>
+                <th>Target</th>
+                <th>Aktual (1–4)</th>
+                <th>Hasil × Bobot</th>
+                <th>Gap</th>
+                <th>Komentar</th>
+            </tr>
+        </thead>
+
                 <tbody>
                     @php $kategori_sekarang = ''; @endphp
                     @foreach ($kompetensi as $i => $item)

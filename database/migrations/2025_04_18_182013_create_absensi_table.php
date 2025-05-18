@@ -17,8 +17,6 @@ return new class extends Migration
         $table->date('tanggal');
         $table->time('waktu_masuk');
         $table->time('waktu_keluar')->nullable();
-        $table->string('lokasi_masuk');
-        $table->string('lokasi_keluar')->nullable();
         $table->timestamps(); // created_at dan updated_at
     });
 }
