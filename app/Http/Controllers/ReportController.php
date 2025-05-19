@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use MongoDB\Client as MongoClient;
+use Illuminate\Support\Facades\DB; 
 
 class ReportController extends Controller
 {
@@ -67,5 +68,14 @@ class ReportController extends Controller
         }
 
         return response()->json(['error' => 'Gagal menyimpan report'], 500);
+    }
+public function getReportData()
+    {
+        // Contoh isi method
+        $data = DB::table('laporan_harians')
+            ->select('tanggal', 'nama', 'departemen')
+            ->get();
+
+        return response()->json($data);
     }
 }
