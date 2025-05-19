@@ -159,4 +159,20 @@ class PenilaianController extends Controller
 
     return redirect()->route('penilaian.index')->with('success', 'Data penilaian berhasil disimpan.');
 }
+public function tampil()
+    {
+      $laporans = Penilaian::select('DATE(created_at) as tanggal', 'nama', 'departemen', 'total_score','total_persentase', 'indeks')
+                     ->where('kategori', 'Total Hasil')
+                     ->orderBy('created_at', 'desc')
+                     ->get();
+
+// Format tanggal di controller sebelum passing ke view
+// $laporans->transform(function($item) {
+//     $item->tanggal = $item->created_at->format('d-m-Y'); // ubah created_at ke format tanggal yang diinginkan
+//     return $item;
+// });
+
+return view('penilaian.view', compact('laporans'));
+
+    }
 }
