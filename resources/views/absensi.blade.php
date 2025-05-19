@@ -12,8 +12,9 @@
                         <th>Nama</th>
                         <th>Tanggal</th>
                         <th>Waktu Masuk</th>
-                        <th>Waktu Keluar</th>
+                        <th>Waktu Pulang</th>
                         <th>Waktu Kerja</th>
+                        <th>Keterangan</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -31,6 +32,8 @@
                             <td>{{ $item->waktu_masuk }}</td>
                             <td>{{ $item->waktu_keluar ?? '-' }}</td>
                             <td>{{ $durasi }}</td>
+                            <td>{{ $item->keterangan ?? '-' }}</td>
+
                             <td>
                                 <button @click="modalType = 'view'; selectedId = {{ $item->id }}" class="text-blue-600 hover:underline">View</button> |
                                 <button @click="modalType = 'edit'; selectedId = {{ $item->id }}" class="text-yellow-500 hover:underline">Edit</button>

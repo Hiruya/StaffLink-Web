@@ -45,8 +45,9 @@ class AbsensiController extends Controller
         $request->validate([
             'waktu_masuk' => 'required|date',
             'waktu_keluar' => 'nullable|date',
-            'lokasi_masuk' => 'required|string',
-            'lokasi_keluar' => 'nullable|string',
+            'waktu_kerja' => 'nullable|date',
+            'keterangan' => 'nullable|string',
+           
         ]);
 
         $absensi = Absensi::findOrFail($id);
