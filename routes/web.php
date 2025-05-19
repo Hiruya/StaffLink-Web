@@ -70,6 +70,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/penilaian', [PenilaianController::class, 'index'])->name('penilaian.index');
 Route::post('/penilaian', [PenilaianController::class, 'store'])->name('penilaian.store');
 
+Route::get('/penilaian/tampil', [PenilaianController::class, 'tampil'])->name('penilaian.tampil');
+
 });
 
 

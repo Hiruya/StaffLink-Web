@@ -149,7 +149,7 @@ $kategori_bobot = [
                 </tbody>
             </table>
 
-            <!-- Hasil Akhir yang ikut dicetak -->
+                    <!-- Hasil Akhir yang ikut dicetak dan disimpan -->
             <div class="flex flex-wrap gap-6 mt-10 text-sm text-center">
                 <div class="border border-black flex w-80">
                     <div class="bg-cyan-500 text-white font-bold w-1/2 py-8 text-lg">Result</div>
@@ -164,7 +164,12 @@ $kategori_bobot = [
                     <div class="flex items-center justify-center w-1/2 font-bold text-blue-700 text-2xl" id="result-indeks">-</div>
                 </div>
             </div>
-        </div>
+
+            <!-- Hidden input untuk disimpan ke database -->
+            <input type="hidden" name="total_score" id="input-score">
+            <input type="hidden" name="total_persentase" id="input-persentase">
+            <input type="hidden" name="indeks" id="input-indeks">
+
 
         <!-- Tombol -->
         <div class="mt-4 flex justify-end gap-4 no-print">
@@ -178,52 +183,56 @@ $kategori_bobot = [
     </form>
 </div>
 
-<script>
-function updateHasilBobot() {
-    let totalSkill = 0, totalKinerja = 0, totalAttitude = 0;
+    <script>
+    function updateHasilBobot() {
+        let totalSkill = 0, totalKinerja = 0, totalAttitude = 0;
+        document.querySelectorAll('.aktual').forEach(select => {
+            const val = parseInt(select.value) || 0;
+            const bobot = parseInt(select.dataset.bobot) || 0;
+            const idx = parseInt(select.dataset.index);
+            const gap = 4 - val;
+            const hasil = val * bobot;
+
+            const row = select.closest('tr');
+            row.querySelector('.hasil-input').value = hasil;
+            row.querySelector('.gap-input').value = gap;
+
+            if (idx <= 9) totalSkill += hasil;
+            else if (idx <= 14) totalKinerja += hasil;
+            else totalAttitude += hasil;
+        });
+
+        const total = totalSkill + totalKinerja + totalAttitude;
+        const max = 20 * 4 * 4;
+        const persen = ((total / max) * 100).toFixed(0);
+
+        let indeks = '-';
+        if (total >= 211) indeks = 'S';
+        else if (total >= 141) indeks = 'A';
+        else if (total >= 71) indeks = 'B';
+        else if (total >= 10) indeks = 'C';
+
+        // Tampilkan ke UI
+        document.getElementById('total-skill').textContent = totalSkill;
+        document.getElementById('total-kinerja').textContent = totalKinerja;
+        document.getElementById('total-attitude').textContent = totalAttitude;
+        document.getElementById('result-score').textContent = total;
+        document.getElementById('result-persentase').textContent = persen + '%';
+        document.getElementById('result-indeks').textContent = indeks;
+
+        // Simpan ke input hidden untuk dikirim ke server
+        document.getElementById('input-score').value = total;
+        document.getElementById('input-persentase').value = persen;
+        document.getElementById('input-indeks').value = indeks;
+    }
+
+    function printTable() {
+        window.print();
+    }
+
     document.querySelectorAll('.aktual').forEach(select => {
-        const val = parseInt(select.value) || 0;
-        const bobot = parseInt(select.dataset.bobot) || 0;
-        const idx = parseInt(select.dataset.index);
-        const gap = 4 - val;
-        const hasil = val * bobot;
-
-        const row = select.closest('tr');
-        row.querySelector('.hasil-input').value = hasil;
-        row.querySelector('.gap-input').value = gap;
-
-        if (idx <= 9) totalSkill += hasil;
-        else if (idx <= 14) totalKinerja += hasil;
-        else totalAttitude += hasil;
+        select.addEventListener('change', updateHasilBobot);
     });
-
-    document.getElementById('total-skill').textContent = totalSkill;
-    document.getElementById('total-kinerja').textContent = totalKinerja;
-    document.getElementById('total-attitude').textContent = totalAttitude;
-
-    const total = totalSkill + totalKinerja + totalAttitude;
-    const max = 20 * 4 * 4;
-    const persen = ((total / max) * 100).toFixed(0);
-
-    document.getElementById('result-score').textContent = total;
-    document.getElementById('result-persentase').textContent = persen + '%';
-
-    let indeks = '-';
-    if (total >= 211) indeks = 'S';
-    else if (total >= 141) indeks = 'A';
-    else if (total >= 71) indeks = 'B';
-    else if (total >= 10) indeks = 'C';
-
-    document.getElementById('result-indeks').textContent = indeks;
-}
-
-function printTable() {
-    window.print();
-}
-
-document.querySelectorAll('.aktual').forEach(select => {
-    select.addEventListener('change', updateHasilBobot);
-});
-window.addEventListener('load', updateHasilBobot);
-</script>
+    window.addEventListener('load', updateHasilBobot);
+    </script>
 </x-layouts.app>

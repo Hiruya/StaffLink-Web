@@ -92,26 +92,87 @@ class PenilaianController extends Controller
         $aktual = $request->input('aktual', []);
 
         $data = [];
+        $totalSkill = 0;
+        $totalKinerja = 0;
+        $totalAttitude = 0;
 
-        foreach ($this->kompetensi as $index => $item) {
-            $data[] = [
-                'nama' => $nama,
-                'departemen' => $departemen,
-                'kategori' => $this->getKategoriByIndex($index),
-                'kompetensi' => $this->getKompetensiByIndex($index),
-                'metode' => $metode[$index] ?? null,
-                'target' => $target[$index] ?? null,
-                'aktual' => $aktual[$index] ?? null,
-                'komentar' => $komentar[$index] ?? null,
-                'hasil_bobot' => (($aktual[$index] ?? 0) * $this->getBobotByKategori($index)),
-                'gap' => (4 - ($aktual[$index] ?? 0)),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
-        }
+       foreach ($this->kompetensi as $index => $item) {
+        $kategori = $this->getKategoriByIndex($index);
+        $kompetensi = $this->getKompetensiByIndex($index);
+        $akt = $aktual[$index] ?? 0;
+        $bobot = $this->getBobotByKategori($index);
+        $hasil_bobot = $akt * $bobot;
 
-        Penilaian::insert($data);
+        // Penjumlahan berdasarkan kategori
+        if (strpos($kategori, 'Skill') !== false) $totalSkill += $hasil_bobot;
+        elseif (strpos($kategori, 'Kinerja') !== false) $totalKinerja += $hasil_bobot;
+        elseif (strpos($kategori, 'Attitude') !== false) $totalAttitude += $hasil_bobot;
 
-        return redirect()->route('penilaian.index')->with('success', 'Data penilaian berhasil disimpan.');
+        $data[] = [
+            'nama' => $nama,
+            'departemen' => $departemen,
+            'kategori' => $kategori,
+            'kompetensi' => $kompetensi,
+            'metode' => $metode[$index] ?? null,
+            'target' => $target[$index] ?? null,
+            'aktual' => $akt,
+            'komentar' => $komentar[$index] ?? null,
+            'hasil_bobot' => $hasil_bobot,
+            'gap' => (4 - $akt),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+    }
+
+    // Total akhir
+    $total = $totalSkill + $totalKinerja + $totalAttitude;
+    $maks = 20 * 4 * 4;
+    $persentase = number_format(($total / $maks) * 100, 0) . '%';
+
+    // Indeks
+    $indeks = '-';
+    if ($total >= 211) $indeks = 'S';
+    elseif ($total >= 141) $indeks = 'A';
+    elseif ($total >= 71) $indeks = 'B';
+    elseif ($total >= 10) $indeks = 'C';
+
+    // Tambahkan satu baris untuk simpan total nilai
+    $data[] = [
+        'nama' => $nama,
+        'departemen' => $departemen,
+        'kategori' => 'Total Hasil',
+        'kompetensi' => 'Ringkasan Penilaian',
+        'metode' => null,
+        'target' => null,
+        'aktual' => null,
+        'komentar' => null,
+        'hasil_bobot' => $total,
+        'gap' => null,
+        'total_score' => (string)$total,
+        'total_persentase' => $persentase,
+        'indeks' => $indeks,
+        'created_at' => now(),
+        'updated_at' => now(),
+    ];
+
+    Penilaian::insert($data);
+
+    return redirect()->route('penilaian.index')->with('success', 'Data penilaian berhasil disimpan.');
+}
+public function tampil()
+    {
+      $laporans = Penilaian::select('DATE(created_at) as tanggal', 'nama', 'departemen', 'total_score','total_persentase', 'indeks')
+                     ->where('kategori', 'Total Hasil')
+                     ->orderBy('created_at', 'desc')
+                     ->get();
+
+// Format tanggal di controller sebelum passing ke view
+// $laporans->transform(function($item) {
+//     $item->tanggal = $item->created_at->format('d-m-Y'); // ubah created_at ke format tanggal yang diinginkan
+//     return $item;
+// });
+
+return view('penilaian.view', compact('laporans'));
+
     }
 }
