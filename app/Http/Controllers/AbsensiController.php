@@ -8,12 +8,54 @@ use PDF;
 
 class AbsensiController extends Controller
 {
-    // Menampilkan semua data absensi
-    public function index()
-    {
-        $absensi = Absensi::with('user')->get();
-        return view('absensi', compact('absensi'));
-    }
+    // Menampilkan semua data absensi (untuk halaman web)
+  public function index()
+{
+    // Ambil semua data absensi dengan relasi user, urut berdasarkan tanggal
+    $data = \App\Models\Absensi::with('user')
+        ->orderBy('tanggal', 'asc')
+        ->orderBy('user_id', 'asc')
+        ->get();
+
+    // Group berdasarkan user_id dan tanggal supaya gabung data per user per tanggal
+    $absensi = $data->groupBy(function ($item) {
+        return $item->user_id . '_' . $item->tanggal;
+    })->map(function ($group) {
+        $first = $group->first();
+        $user = $first->user;
+
+        // Ambil waktu masuk paling awal di grup
+        $waktu_masuk = $group->whereNotNull('waktu_masuk')->min('waktu_masuk');
+
+        // Ambil waktu keluar paling akhir di grup
+        $waktu_keluar = $group->whereNotNull('waktu_keluar')->max('waktu_keluar');
+
+        // Hitung durasi jika waktu masuk dan keluar ada
+        $durasi = ($waktu_masuk && $waktu_keluar)
+            ? \Carbon\Carbon::parse($waktu_masuk)->diff(\Carbon\Carbon::parse($waktu_keluar))->format('%H:%I:%S')
+            : '-';
+
+        // Ambil keterangan dari tipe izin atau sakit jika ada
+        // Jika ada banyak keterangan, ambil yang pertama yang bukan "-"
+        $keterangan = $group->pluck('keterangan')->filter(function ($val) {
+            return $val && $val !== '-';
+        })->first() ?? '-';
+
+        return (object)[
+            'user' => $user,
+            'tanggal' => $first->tanggal,
+            'waktu_masuk' => $waktu_masuk,
+            'waktu_keluar' => $waktu_keluar,
+            'durasi' => $durasi,
+            'keterangan' => $keterangan,
+        ];
+    })->values(); // reset index
+
+    return view('absensi', compact('absensi'));
+}
+
+
+
 
     // Mengunduh PDF absensi
     public function downloadPDF()
@@ -42,59 +84,151 @@ class AbsensiController extends Controller
     {
         $request->validate([
             'waktu_masuk' => 'required|date',
-            'waktu_keluar' => 'nullable|date',
-            'waktu_kerja' => 'nullable|date',
+            'waktu_pulang' => 'nullable|date',
             'keterangan' => 'nullable|string',
         ]);
 
         $absensi = Absensi::findOrFail($id);
-        $absensi->update($request->all());
+        $absensi->update($request->only(['waktu_masuk', 'waktu_pulang', 'keterangan']));
 
         return redirect()->route('absensi.index')->with('success', 'Data absensi berhasil diperbarui.');
     }
 
-    // Absen masuk (API)
-    public function masuk(Request $request)
-    {
-        $userId = $request->user_id;
-
-        $absen = Absensi::create([
-            'user_id' => $userId,
-            'waktu_masuk' => now(),
+    // Menyimpan data absensi dari API (Flutter)
+   public function store(Request $request)
+{
+    try {
+        // Validasi input
+        $validated = $request->validate([
+            'user_id' => 'required|string',
+            'nama' => 'required|string',
+            'tanggal' => 'required|date',
+            'tipe' => 'required|in:masuk,pulang,sakit,izin',
+            'keterangan' => 'nullable|string',
+            'waktu_masuk' => 'nullable|date_format:H:i:s',
+            'waktu_keluar' => 'nullable|date_format:H:i:s',
         ]);
 
-        return response()->json(['message' => 'Absen masuk berhasil', 'data' => $absen]);
-    }
-
-    // Absen pulang (API)
-    public function pulang(Request $request)
-    {
         $userId = $request->user_id;
+        $tanggal = $request->tanggal;
+        $tipe = $request->tipe;
 
-        $absen = Absensi::where('user_id', $userId)
-            ->whereDate('waktu_masuk', today())
-            ->latest()
-            ->first();
+        // Cek absensi tipe sama hari ini (langsung blok jika sudah absen tipe sama)
+        $sudahAbsenTipeIni = Absensi::where('user_id', $userId)
+            ->where('tanggal', $tanggal)
+            ->where('tipe', $tipe)
+            ->exists();
 
-        if ($absen) {
-            $absen->update(['waktu_keluar' => now()]);
-            return response()->json(['message' => 'Absen pulang berhasil', 'data' => $absen]);
+        if ($sudahAbsenTipeIni) {
+            return response()->json([
+                'message' => "Anda sudah absen $tipe hari ini."
+            ], 400);
         }
 
-        return response()->json(['message' => 'Absen masuk belum ditemukan'], 404);
-    }
+        // Cek apakah sudah absen masuk dan pulang hari ini (untuk batasi izin/sakit)
+        if (in_array($tipe, ['izin', 'sakit'])) {
+            $sudahAbsenMasuk = Absensi::where('user_id', $userId)
+                ->where('tanggal', $tanggal)
+                ->where('tipe', 'masuk')
+                ->exists();
 
-    // Keterangan (izin/sakit)
-    public function keterangan(Request $request)
-    {
-        $userId = $request->user_id;
-        $keterangan = $request->keterangan; // Contoh: 'izin' atau 'sakit'
+            $sudahAbsenPulang = Absensi::where('user_id', $userId)
+                ->where('tanggal', $tanggal)
+                ->where('tipe', 'pulang')
+                ->exists();
 
-        $absen = Absensi::create([
+            // Jika sudah absen masuk dan pulang, izin/sakit tidak boleh
+            if ($sudahAbsenMasuk && $sudahAbsenPulang) {
+                return response()->json([
+                    'message' => 'Tidak bisa absen izin atau sakit setelah melakukan absen masuk dan pulang hari ini.'
+                ], 400);
+            }
+        }
+
+        // Ambil waktu sekarang
+        $jamSekarang = now()->format('H:i:s');
+
+        // Siapkan data untuk disimpan
+        $data = [
             'user_id' => $userId,
-            'keterangan' => $keterangan,
-        ]);
+            'nama' => $request->nama,
+            'tanggal' => $tanggal,
+            'tipe' => $tipe,
+            'keterangan' => in_array($tipe, ['sakit', 'izin'])
+                ? ($request->keterangan ?? '-')
+                : '-',
+        ];
 
-        return response()->json(['message' => 'Keterangan berhasil ditambahkan', 'data' => $absen]);
+        if ($tipe === 'masuk') {
+            $data['waktu_masuk'] = $jamSekarang;
+        } elseif ($tipe === 'pulang') {
+            $data['waktu_keluar'] = $jamSekarang;
+        }
+
+        Absensi::create($data);
+
+        return response()->json([
+            'message' => 'Absen berhasil',
+            'data' => $data,
+        ], 201);
+
+    } catch (\Illuminate\Validation\ValidationException $e) {
+        return response()->json(['errors' => $e->errors()], 422);
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
     }
+}
+
+
+public function checkAbsen(Request $request)
+{
+    $validator = Validator::make($request->all(), [
+        'user_id' => 'required|string',
+        'tanggal' => 'required|date_format:Y-m-d',
+        'tipe' => 'required|string|in:masuk,pulang,izin,sakit',
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Validasi gagal',
+            'errors' => $validator->errors(),
+        ], 422);
+    }
+
+    $userId = $request->input('user_id');
+    $tanggal = $request->input('tanggal');
+    $tipe = $request->input('tipe');
+
+    // Untuk tipe izin/sakit, cek juga jika sudah absen masuk dan pulang
+    if (in_array($tipe, ['izin', 'sakit'])) {
+        $sudahAbsenMasuk = Absensi::where('user_id', $userId)
+            ->where('tanggal', $tanggal)
+            ->where('tipe', 'masuk')
+            ->exists();
+
+        $sudahAbsenPulang = Absensi::where('user_id', $userId)
+            ->where('tanggal', $tanggal)
+            ->where('tipe', 'pulang')
+            ->exists();
+
+        if ($sudahAbsenMasuk && $sudahAbsenPulang) {
+            // Jika sudah absen masuk & pulang, tidak bisa izin/sakit
+            return response()->json([
+                'success' => true,
+                'exists' => true,  // kita tandai sudah "ada", supaya Flutter menolak izin/sakit
+            ]);
+        }
+    }
+
+    $exists = Absensi::where('user_id', $userId)
+        ->where('tanggal', $tanggal)
+        ->where('tipe', $tipe)
+        ->exists();
+
+    return response()->json([
+        'success' => true,
+        'exists' => $exists,
+    ]);
+}
 }

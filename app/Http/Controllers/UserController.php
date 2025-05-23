@@ -10,13 +10,13 @@ use Livewire\Volt\Component;
 
 class UserController extends Controller
 {
-    public function show(User $user)
-    {
-        return view('users.show', [
-            'user' => $user,
-            'roles' => Role::all()
-        ]);
-    }
+    public function index()
+{
+    $absensi = Absensi::where('user_id', auth()->id())->get();
+
+    return view('absensi.index', compact('absensi'));
+}
+
 
     public function edit($userId)
     {
@@ -71,4 +71,21 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('admin.assign-role')->with('success', 'User deleted successfully');
     }
+
+public function first()
+{
+    $user = User::first(); // Mengambil data user pertama dari tabel users
+
+    if ($user) {
+        return response()->json([
+            'id' => $user->id,
+            'nama' => $user->name, // atau 'nama' kalau kolom di database kamu pakai nama itu
+        ]);
+    } else {
+        return response()->json([
+            'message' => 'User tidak ditemukan'
+        ], 404);
+    }
+}
+
 }

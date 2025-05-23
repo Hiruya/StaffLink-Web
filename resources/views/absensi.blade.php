@@ -19,25 +19,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($absensi as $item)
-                        @php
-                            $masuk = \Carbon\Carbon::parse($item->waktu_masuk);
-                            $keluar = $item->waktu_keluar ? \Carbon\Carbon::parse($item->waktu_keluar) : null;
-                            $durasi = $keluar ? $masuk->diff($keluar)->format('%H:%I:%S') : '-';
-                        @endphp
+                     @foreach ($absensi as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->user->name ?? '-' }}</td>
                             <td>{{ $item->tanggal }}</td>
-                            <td>{{ $item->waktu_masuk }}</td>
+                            <td>{{ $item->waktu_masuk ?? '-' }}</td>
                             <td>{{ $item->waktu_keluar ?? '-' }}</td>
-                            <td>{{ $durasi }}</td>
+                            <td>{{ $item->durasi }}</td>
                             <td>{{ $item->keterangan ?? '-' }}</td>
-
-                            <td>
-                                <button @click="modalType = 'view'; selectedId = {{ $item->id }}" class="text-blue-600 hover:underline">View</button> |
-                                <button @click="modalType = 'edit'; selectedId = {{ $item->id }}" class="text-yellow-500 hover:underline">Edit</button>
-                            </td>
+                        
                         </tr>
                     @endforeach
                 </tbody>
