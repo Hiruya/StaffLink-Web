@@ -85,6 +85,8 @@ Route::get('/test-db', function() {
     }
 });
 
+Route::get('/absen', [AbsensiController::class, 'index'])->name('absensi.index')->middleware('auth');
+
 // Route untuk prediksi promosi
 Route::get('/promotion-predict', function () {return view('promotion.predict');})->name('promotion.predict');
 

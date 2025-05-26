@@ -4,39 +4,44 @@ namespace App\Http\Controllers\User;
 
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Absensi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Livewire\Volt\Component;
 use App\Http\Controllers\Controller;
-
 
 class UserController extends Controller
 {
     public function index(Request $request)
-{
-    $query = User::with('role');
+    {
+        // Jika user biasa, tampilkan data absensinya
+        if (auth()->user()->role->name === 'user') {
+            $absensi = Absensi::where('user_id', auth()->id())->get();
+            return view('absensi.index', compact('absensi'));
+        }
 
-    if ($search = $request->input('search')) {
-        $query->where(function ($q) use ($search) {
-            $q->where('name', 'like', "%{$search}%")
-              ->orWhere('email', 'like', "%{$search}%");
-        });
+        // Jika admin atau lainnya, tampilkan data user
+        $query = User::with('role');
+
+        if ($search = $request->input('search')) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+
+        if ($role = $request->input('role')) {
+            $query->where('role_id', $role);
+        }
+
+        if ($sort = $request->input('sort')) {
+            $query->orderBy($sort);
+        }
+
+        $users = $query->paginate(10);
+        $roles = Role::all();
+
+        return view('users.index', compact('users', 'roles'));
     }
-
-    if ($role = $request->input('role')) {
-        $query->where('role_id', $role);
-    }
-
-    if ($sort = $request->input('sort')) {
-        $query->orderBy($sort);
-    }
-
-    $users = $query->paginate(10);
-    $roles = Role::all();
-
-    return view('users.index', compact('users', 'roles'));
-}
-
 
     public function show(User $user)
     {
@@ -59,11 +64,10 @@ class UserController extends Controller
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,'.$user->id,
+            'email' => 'required|email|unique:users,email,' . $user->id,
             'role' => 'nullable|exists:roles,_id'
         ]);
 
-        // Cek jika mencoba assign role admin
         if ($request->has('role')) {
             $selectedRole = Role::find($request->role);
             if ($selectedRole && $selectedRole->name === 'admin') {
@@ -87,16 +91,14 @@ class UserController extends Controller
     public function resetPassword(Request $request, $userId)
     {
         $user = User::findOrFail($userId);
-
-        // Generate a random password or use a default one
-        $newPassword = 'password'; // In production, use something more secure
+        $newPassword = 'password'; // Gunakan yang lebih aman di production
 
         $user->update([
             'password' => Hash::make($newPassword)
         ]);
 
         return redirect()->route('users.show', $user->id)
-            ->with('success', 'Password reset successfully. New password is: '.$newPassword);
+            ->with('success', 'Password reset successfully. New password is: ' . $newPassword);
     }
 
     public function destroy($userId)
@@ -104,7 +106,22 @@ class UserController extends Controller
         $user = User::findOrFail($userId);
         $user->delete();
 
-        // Correct the route name to match your route definition
         return redirect()->route('admin.assign-role.index')->with('success', 'User deleted successfully');
+    }
+
+    public function first()
+    {
+        $user = User::first();
+
+        if ($user) {
+            return response()->json([
+                'id' => $user->id,
+                'nama' => $user->name,
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'User tidak ditemukan'
+            ], 404);
+        }
     }
 }
