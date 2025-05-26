@@ -15,7 +15,6 @@
                         <th>Waktu Pulang</th>
                         <th>Waktu Kerja</th>
                         <th>Keterangan</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>

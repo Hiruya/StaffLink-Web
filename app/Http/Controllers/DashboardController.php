@@ -12,8 +12,11 @@ class DashboardController extends Controller
     // Tampilkan halaman dashboard
     public function index()
     {
-    $today = date('Y-m-d');  // string tanggal hari ini
-    $jumlahHariIni = Absensi::where('tanggal', $today)->count();
+    $today = date('Y-m-d');
+    $jumlahHariIni = Absensi::where('tanggal', $today)
+                            ->where('tipe', 'masuk')
+                            ->count();
+
 
     return view('dashboard', ['jumlahHariIni' => $jumlahHariIni]);
 }

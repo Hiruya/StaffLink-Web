@@ -31,7 +31,7 @@
                             <td class="px-4 py-2">{{ $laporan->nama }}</td>
                             <td class="px-4 py-2">{{ $laporan->departemen }}</td>
                             <td class="px-4 py-2">{{ $laporan->shift }}</td>
-                            <td class="px-4 py-2">{{ $laporan->jam_masuk }} - {{ $laporan->jam_keluar }}</td>
+                            <td class="px-4 py-2">{{ $laporan->jam_kerja }}</td>
                             <td class="px-4 py-2 max-w-xs break-words">
                                 @if(!empty($laporan->pelayanan))
                                     {{ $laporan->pelayanan }}
@@ -40,13 +40,16 @@
                                 @endif
                             </td>
                             <td class="px-4 py-2 max-w-xs break-words">
-                                @if(!empty($laporan->dokumentasi))
+                           @if (!empty($laporan->dokumentasi))
                                     @php
-                                        $docs = explode(',', $laporan->dokumentasi);
+                                        $cleaned = str_replace(['"', "'"], '', $laporan->dokumentasi);
+                                        $docs = array_filter(explode(',', $cleaned));
                                     @endphp
+
                                     @foreach ($docs as $dok)
-                                        <a href="{{ asset('storage/' . $dok) }}" target="_blank"
-                                           class="text-blue-500 underline text-xs block mb-1">Lihat</a>
+                                        @if(trim($dok) != '')
+                                            <a href="{{ asset('storage/dokumen_reports/' . trim($dok)) }}" target="_blank" class="text-blue-500 underline text-xs block mb-1">Lihat</a>
+                                        @endif
                                     @endforeach
                                 @else
                                     <span class="text-gray-400 italic">-</span>

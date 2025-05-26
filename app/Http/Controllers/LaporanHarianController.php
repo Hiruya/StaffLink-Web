@@ -34,13 +34,19 @@ class LaporanHarianController extends Controller
 
         $docs = [];
         if ($request->hasFile('dokumentasi')) {
-            foreach ($request->file('dokumentasi') as $file) {
-                $docs[] = $file->store('dokumentasi', 'public');
-            }
-            $data['dokumentasi'] = implode(',', $docs);
-        } else {
-            $data['dokumentasi'] = null;
+    $docs = [];
+    foreach ($request->file('dokumentasi') as $file) {
+        $path = $file->store('dokumentasi', 'public');
+        if ($path && trim($path) !== '' && $path !== '""') {
+            $docs[] = $path;
         }
+    }
+    $docs = array_filter($docs); // hilangkan elemen kosong
+    $data['dokumentasi'] = count($docs) ? implode(',', $docs) : null;
+} else {
+    $data['dokumentasi'] = null;
+}
+
 
         LaporanHarian::create($data);
 
