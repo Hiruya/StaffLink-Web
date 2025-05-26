@@ -1,15 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Models\Role;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Volt\Component;
+use App\Http\Controllers\Controller;
+
 
 class UserController extends Controller
 {
+<<<<<<< HEAD:app/Http/Controllers/UserController.php
     public function index()
 {
     $absensi = Absensi::where('user_id', auth()->id())->get();
@@ -17,11 +20,46 @@ class UserController extends Controller
     return view('absensi.index', compact('absensi'));
 }
 
+=======
+    public function index(Request $request)
+{
+    $query = User::with('role');
+
+    if ($search = $request->input('search')) {
+        $query->where(function ($q) use ($search) {
+            $q->where('name', 'like', "%{$search}%")
+              ->orWhere('email', 'like', "%{$search}%");
+        });
+    }
+
+    if ($role = $request->input('role')) {
+        $query->where('role_id', $role);
+    }
+
+    if ($sort = $request->input('sort')) {
+        $query->orderBy($sort);
+    }
+
+    $users = $query->paginate(10);
+    $roles = Role::all();
+
+    return view('users.index', compact('users', 'roles'));
+}
+
+
+    public function show(User $user)
+    {
+        return view('users.show', [
+            'user' => $user,
+            'roles' => Role::all()
+        ]);
+    }
+>>>>>>> 1ddeb12b5d79f5be383beb15b2ae9253a85e505e:app/Http/Controllers/User/UserController.php
 
     public function edit($userId)
     {
         $user = User::findOrFail($userId);
-        $roles = Role::all();
+        $roles = Role::where('name', '!=', 'admin')->get(); // Exclude admin
         return view('users.edit', compact('user', 'roles'));
     }
 
@@ -32,19 +70,25 @@ class UserController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,'.$user->id,
-            'role' => 'nullable|exists:roles,id'
+            'role' => 'nullable|exists:roles,_id'
         ]);
+
+        // Cek jika mencoba assign role admin
+        if ($request->has('role')) {
+            $selectedRole = Role::find($request->role);
+            if ($selectedRole && $selectedRole->name === 'admin') {
+                return redirect()->back()->with('error', 'Cannot assign admin role');
+            }
+
+            $user->role()->associate($validated['role']);
+        }
 
         $user->update([
             'name' => $validated['name'],
             'email' => $validated['email']
         ]);
 
-        // Update role if provided
-        if ($request->has('role')) {
-            $user->role()->associate($validated['role']);
-            $user->save();
-        }
+        $user->save();
 
         return redirect()->route('users.show', $user->id)
             ->with('success', 'User updated successfully');
@@ -69,7 +113,9 @@ class UserController extends Controller
     {
         $user = User::findOrFail($userId);
         $user->delete();
-        return redirect()->route('admin.assign-role')->with('success', 'User deleted successfully');
+
+        // Correct the route name to match your route definition
+        return redirect()->route('admin.assign-role.index')->with('success', 'User deleted successfully');
     }
 
 public function first()

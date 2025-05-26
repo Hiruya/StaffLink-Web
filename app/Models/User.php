@@ -60,7 +60,7 @@ class User extends Authenticatable
     {
         return Str::of($this->name)
             ->explode(' ')
-            ->map(fn (string $name) => Str::of($name)->substr(0, 1))
+            ->map(fn (string $name) => Str::substr($name, 0, 1))
             ->implode('');
     }
 
@@ -69,19 +69,9 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class, 'role_id', '_id');
     }
 
-    public function updateRole($userId, $roleId)
+    public function karyawan()
     {
-        try {
-            $user = User::findOrFail($userId);
-            $user->role_id = $roleId;
-            $user->save();
-
-            session()->flash('success', 'Role berhasil diperbarui.');
-            return true;
-        } catch (\Exception $e) {
-            session()->flash('error', 'Gagal memperbarui role: '.$e->getMessage());
-            return false;
-        }
+        return $this->hasOne(Karyawan::class, 'user_id', '_id');
     }
 
 }
