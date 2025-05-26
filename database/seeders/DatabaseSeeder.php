@@ -9,21 +9,12 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    public function run(): void
-    {
-        // Pastikan role 'admin' sudah ada
-        // $adminRole = Role::firstOrCreate([
-        //     'name' => 'admin',
-        // ]);
+public function run(): void
+{
+    $this->call([
+        RoleSeeder::class,
+        AdminUserSeeder::class,
+    ]);
+}
 
-        // // Buat user admin
-        // User::firstOrCreate(
-        //     ['email' => 'admin@example.com'],
-        //     [
-        //         'name' => 'Admin User',
-        //         'password' => Hash::make('password'),
-        //         'role_id' => $adminRole->_id,
-        //     ]
-        // );
-    }
 }

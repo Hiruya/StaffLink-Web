@@ -1,4 +1,4 @@
-<div class="space-y-4">
+{{-- <div class="space-y-4">
     <!-- Notifikasi -->
     @if (session()->has('success'))
         <div class="px-4 py-2 bg-zinc-100 text-zinc-800 rounded dark:bg-zinc-700 dark:text-zinc-100">
@@ -118,4 +118,4 @@
             {{ $users->links() }}
         </div>
     @endif
-</div>
+</div> --}}

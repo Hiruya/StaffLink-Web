@@ -1,151 +1,160 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
-    <head>
-        @include('partials.head')
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="min-h-screen bg-white dark:bg-zinc-800">
-        <div class="flex min-h-screen">
-            {{-- Sidebar --}}
-            <flux:sidebar sticky stashable class="min-h-screen border-r border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
-                <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
+<head>
+    @include('partials.head')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="min-h-screen bg-white dark:bg-zinc-800">
+    <div class="flex min-h-screen">
+        {{-- Sidebar --}}
+        <flux:sidebar sticky stashable class="min-h-screen border-r border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
+            <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
-                <a href="{{ route('home') }}" class="mr-5 flex items-center space-x-2">
-                    <x-app-logo />
-                </a>
+            <a href="{{ route('home') }}" class="mr-5 flex items-center space-x-2">
+                <x-app-logo />
+            </a>
 
-                {{-- Menu Utama --}}
+            {{-- Menu Utama --}}
+            <flux:navlist variant="outline">
+                <flux:navlist.group>
+                    <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
+                        {{ __('Dashboard') }}
+                    </flux:navlist.item>
+                </flux:navlist.group>
+            </flux:navlist>
+
+            {{-- Data Manager --}}
+            <flux:navlist variant="outline" icon="folder" x-data="{ open: false }">
+                <flux:navlist.group>
+                    <button @click="open = ! open" class="flex items-center w-full text-left">
+                        <flux:navlist.item icon="folder" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
+                            {{ __('Data Manager') }}
+                        </flux:navlist.item>
+                        <svg class="ml-auto shrink-0" x-bind:class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </flux:navlist.group>
+                <div x-show="open" class="mt-1 ml-4 space-y-1">
+                    <flux:navlist.item :href="route('absensi.index')" :current="request()->routeIs('absensi.index')" wire:navigate class="pl-2">
+                        {{ __('Absensi') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item :href="route('laporanharian.index')" :current="request()->routeIs('jadwal.*')" wire:navigate class="pl-2">
+                        {{ __('Laporan Harian') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item :href="route('penilaian.index')" :current="request()->routeIs('penilaian.index')" wire:navigate class="pl-2">
+                        {{ __('Penilaian') }}
+                    </flux:navlist.item>
+                </div>
+            </flux:navlist>
+
+            {{-- Data Karyawan --}}
+            <flux:navlist variant="outline" icon="folder" x-data="{ open: false }">
+                <flux:navlist.group>
+                    <button @click="open = ! open" class="flex items-center w-full text-left">
+                        <flux:navlist.item icon="folder" :href="route('hrd.index')" :current="request()->routeIs('hrd.index')" wire:navigate>
+                            {{ __('Data Karyawan') }}
+                        </flux:navlist.item>
+                        <svg class="ml-auto shrink-0" x-bind:class="{ 'rotate-180': open }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </flux:navlist.group>
+                <div x-show="open" class="mt-1 ml-4 space-y-1">
+                    <flux:navlist.item :href="route('absensi.index')" :current="request()->routeIs('absensi.*')" wire:navigate class="pl-2">
+                        {{ __('Absensi') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item :href="route('laporanharian.index')" :current="request()->routeIs('jadwal.*')" wire:navigate class="pl-2">
+                        {{ __('Laporan Harian') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item :href="route('penilaian.index')" :current="request()->routeIs('penilaian.*')" wire:navigate class="pl-2">
+                        {{ __('Penilaian') }}
+                    </flux:navlist.item>
+                </div>
+            </flux:navlist>
+
+            {{-- Prediksi --}}
+            <flux:navlist variant="outline">
+                <flux:navlist.group>
+                    <flux:navlist.item icon="clipboard" :href="route('promotion.predict')" :current="request()->routeIs('promotion.predict')" wire:navigate>
+                        {{ __('Prediksi') }}
+                    </flux:navlist.item>
+                </flux:navlist.group>
+            </flux:navlist>
+
+            {{-- Assign Role (Khusus Admin) --}}
+            @if(auth()->user()?->role?->name === 'admin')
                 <flux:navlist variant="outline">
                     <flux:navlist.group>
-                        <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-                            {{ __('Dashboard') }}
+                        <flux:navlist.item icon="user-plus" :href="route('admin.assign-role.index')" :current="request()->routeIs('admin.assign-role.index')" wire:navigate>
+                            {{ __('Assign Role') }}
                         </flux:navlist.item>
                     </flux:navlist.group>
                 </flux:navlist>
+            @endif
 
-                {{-- Data Manager --}}
-                <flux:navlist variant="outline" icon="folder" x-data="{ open: false }">
-                    <flux:navlist.group>
-                        <button @click="open = ! open" class="flex items-center w-full text-left">
-                            <flux:navlist.item icon="folder" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-                                {{ __('Data Manager') }}
-                            </flux:navlist.item>
-                            <x-icon name="chevron-down" class="ml-auto shrink-0" x-bind:class="{ 'rotate-180': open }" />
-                        </button>
-                    </flux:navlist.group>
-                    <div x-show="open" class="mt-1 ml-4 space-y-1">
-                        <flux:navlist.item :href="route('absensi.index')" :current="request()->routeIs('absensi.*')" wire:navigate class="pl-2">
-                            {{ __('Absensi') }}
-                        </flux:navlist.item>
-                        <flux:navlist.item :href="route('laporanharian.index')" :current="request()->routeIs('jadwal.*')" wire:navigate class="pl-2">
-                            {{ __('Laporan Harian') }}
-                        </flux:navlist.item>
-                        <flux:navlist.item :href="route('penilaian.index')" :current="request()->routeIs('penilaian.*')" wire:navigate class="pl-2">
-                            {{ __('Penilaian') }}
-                        </flux:navlist.item>
-                    </div>
-                </flux:navlist>
+            <flux:spacer />
 
-                {{-- Data Karyawan --}}
-                <flux:navlist variant="outline" icon="folder" x-data="{ open: false }">
-                    <flux:navlist.group>
-                        <button @click="open = ! open" class="flex items-center w-full text-left">
-                            <flux:navlist.item icon="folder" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-                                {{ __('Data Karyawan') }}
-                            </flux:navlist.item>
-                            <x-icon name="chevron-down" class="ml-auto shrink-0" x-bind:class="{ 'rotate-180': open }" />
-                        </button>
-                    </flux:navlist.group>
-                    <div x-show="open" class="mt-1 ml-4 space-y-1">
-                        <flux:navlist.item :href="route('absensi.index')" :current="request()->routeIs('absensi.*')" wire:navigate class="pl-2">
-                            {{ __('Absensi') }}
-                        </flux:navlist.item>
-                        <flux:navlist.item :href="route('laporanharian.index')" :current="request()->routeIs('jadwal.*')" wire:navigate class="pl-2">
-                            {{ __('Laporan Harian') }}
-                        </flux:navlist.item>
-                        <flux:navlist.item :href="route('penilaian.index')" :current="request()->routeIs('penilaian.*')" wire:navigate class="pl-2">
-                            {{ __('Penilaian') }}
-                        </flux:navlist.item>
-                    </div>
-                </flux:navlist>
-
-                {{-- Prediksi --}}
-                <flux:navlist variant="outline">
-                    <flux:navlist.group>
-                        <flux:navlist.item icon="clipboard" :href="route('promotion.predict')" :current="request()->routeIs('promotion.predict')" wire:navigate>
-                            {{ __('Prediksi') }}
-                        </flux:navlist.item>
-                    </flux:navlist.group>
-                </flux:navlist>
-
-                {{-- Assign Role (Khusus Admin) --}}
-                @if(auth()->user()?->role?->name === 'admin')
-                    <flux:navlist variant="outline">
-                        <flux:navlist.group>
-                            <flux:navlist.item icon="user-plus" :href="route('admin.assign-role')" :current="request()->routeIs('admin.assign-role')" wire:navigate>
-                                {{ __('Assign Role') }}
-                            </flux:navlist.item>
-                        </flux:navlist.group>
-                    </flux:navlist>
-                @endif
-
-                <flux:spacer />
-
-                {{-- User Menu --}}
-                <flux:dropdown position="bottom" align="start">
-                    <flux:profile :name="auth()->user()->name" :initials="auth()->user()->initials()" icon-trailing="chevrons-up-down" />
-                    <flux:menu class="w-[220px]">
-                        <flux:menu.radio.group>
-                            <div class="p-0 text-sm font-normal">
-                                <div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                                    <span class="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-lg">
-                                        <span class="flex h-full w-full items-center justify-center rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white">
-                                            {{ auth()->user()->initials() }}
-                                        </span>
+            {{-- User Menu --}}
+            <flux:dropdown position="bottom" align="start">
+                <flux:profile :name="auth()->user()->name" :initials="auth()->user()->initials()" icon-trailing="chevrons-up-down" />
+                <flux:menu class="w-[220px]">
+                    <flux:menu.radio.group>
+                        <div class="p-0 text-sm font-normal">
+                            <div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+                                <span class="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-lg">
+                                    <span class="flex h-full w-full items-center justify-center rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white">
+                                        {{ auth()->user()->initials() }}
                                     </span>
-                                    <div class="grid flex-1 text-left text-sm leading-tight">
-                                        <span class="truncate font-semibold">{{ auth()->user()->name }}</span>
-                                        <span class="truncate text-xs">{{ auth()->user()->email }}</span>
-                                        <span class="truncate text-xs text-zinc-500">{{ auth()->user()->department }}</span>
-                                    </div>
-
+                                </span>
+                                <div class="grid flex-1 text-left text-sm leading-tight">
+                                    <span class="truncate font-semibold">{{ auth()->user()->name }}</span>
+                                    <span class="truncate text-xs">{{ auth()->user()->email }}</span>
+                                    <span class="truncate text-xs text-zinc-500">{{ auth()->user()->department }}</span>
                                 </div>
                             </div>
-                        </flux:menu.radio.group>
+                        </div>
+                    </flux:menu.radio.group>
 
-                        <flux:menu.separator />
+                    <flux:menu.separator />
 
-                        <flux:menu.radio.group>
-                            <flux:menu.item href="/settings/profile" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
-                        </flux:menu.radio.group>
-
-                        <flux:menu.separator />
-
-                        <form method="POST" action="{{ route('logout') }}" class="w-full">
-                            @csrf
-                            <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full">
-                                {{ __('Log Out') }}
+                    <flux:menu.radio.group>
+                        @if(auth()->user()?->role?->name === 'karyawan')
+                            <flux:menu.item href="{{ route('karyawan.index') }}" icon="user" wire:navigate>
+                                {{ __('Data Karyawan') }}
                             </flux:menu.item>
-                        </form>
-                    </flux:menu>
-                </flux:dropdown>
-            </flux:sidebar>
+                        @endif
 
+                        <flux:menu.item href="/settings/profile" icon="cog" wire:navigate>
+                            {{ __('Pengaturan') }}
+                        </flux:menu.item>
+                    </flux:menu.radio.group>
 
-            {{-- Konten Utama --}}
-            <main class="flex-1 overflow-x-hidden">
-                <!-- Mobile User Menu (bisa tetap di sini atau di atas slot) -->
-                <flux:header class="lg:hidden">
-                    <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
-                    <flux:spacer />
-                    {{-- ...mobile menu content --}}
-                </flux:header>
+                    <flux:menu.separator />
 
-                {{-- Slot konten (tabel, dll) --}}
-                {{ $slot }}
-            </main>
-        </div>
+                    <form method="POST" action="{{ route('logout') }}" class="w-full">
+                        @csrf
+                        <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full">
+                            {{ __('Log Out') }}
+                        </flux:menu.item>
+                    </form>
+                </flux:menu>
+            </flux:dropdown>
+        </flux:sidebar>
 
-        @fluxScripts
-    </body>
+        {{-- Konten Utama --}}
+        <main class="flex-1 overflow-x-hidden">
+            <!-- Mobile User Menu -->
+            <flux:header class="lg:hidden">
+                <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
+                <flux:spacer />
+            </flux:header>
+
+            {{-- Slot konten (tabel, dll) --}}
+            {{ $slot }}
+        </main>
+    </div>
+
+    @fluxScripts
+</body>
 </html>

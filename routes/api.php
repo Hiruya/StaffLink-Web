@@ -15,5 +15,5 @@ Route::post('/laporan-harian', [LaporanHarianApiController::class, 'store']);
 Route::get('/api/grafik-promosi', [DashboardController::class, 'getGrafikPromosi']);
 
 // Report API
-Route::post('/report', [ReportController::class, 'store']);       // Untuk submit data report
-Route::get('/report', [ReportController::class, 'getReportData']); // Untuk ambil data report
+Route::post('/report', [ReportController::class, 'store']);
+Route::get('/report', [ReportController::class, 'getReportData']); 
