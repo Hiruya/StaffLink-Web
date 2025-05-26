@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use MongoDB\Laravel\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class AddNamaAndDepartemenToPenilaiansTable extends Migration
 {
+    protected $connection = 'mongodb';
     public function up()
     {
         Schema::table('penilaians', function (Blueprint $table) {
