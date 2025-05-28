@@ -7,7 +7,7 @@ class LaporanHarian extends Model
 {
     protected $fillable = [
         'email', 'tanggal', 'nama', 'departemen', 'shift',
-        'jam_masuk', 'jam_keluar', 'pelayanan', 'dokumentasi',
+        'jam_kerja', 'pelayanan', 'dokumentasi',
     ];
 
     protected $casts = [

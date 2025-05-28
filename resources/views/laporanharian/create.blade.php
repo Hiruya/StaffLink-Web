@@ -87,31 +87,31 @@
             </div>
 
             <div class="grid grid-cols-2 gap-4">
-                <div>
-                    <label for="jam_masuk" class="block mb-1 font-medium">Jam Masuk</label>
-                    <input 
-                        type="time" id="jam_masuk" name="jam_masuk" value="{{ old('jam_masuk') }}" 
-                        class="w-full border rounded px-3 py-2 @error('jam_masuk') border-red-600 @enderror" 
-                        required
-                        aria-describedby="jam_masuk-error"
-                    >
-                    @error('jam_masuk') 
-                        <p id="jam_masuk-error" class="text-red-600 text-sm mt-1">{{ $message }}</p> 
-                    @enderror
-                </div>
-                <div>
-                    <label for="jam_keluar" class="block mb-1 font-medium">Jam Keluar</label>
-                    <input 
-                        type="time" id="jam_keluar" name="jam_keluar" value="{{ old('jam_keluar') }}" 
-                        class="w-full border rounded px-3 py-2 @error('jam_keluar') border-red-600 @enderror" 
-                        required
-                        aria-describedby="jam_keluar-error"
-                    >
-                    @error('jam_keluar') 
-                        <p id="jam_keluar-error" class="text-red-600 text-sm mt-1">{{ $message }}</p> 
-                    @enderror
-                </div>
-            </div>
+    <div>
+        <label for="jam_masuk" class="block mb-1 font-medium">Jam Masuk</label>
+        <input 
+            type="time" id="jam_masuk" name="jam_masuk" value="{{ old('jam_masuk') }}" 
+            class="w-full border rounded px-3 py-2 @error('jam_masuk') border-red-600 @enderror" 
+            required
+        >
+        @error('jam_masuk') 
+            <p class="text-red-600 text-sm mt-1">{{ $message }}</p> 
+        @enderror
+    </div>
+
+    <div>
+        <label for="jam_keluar" class="block mb-1 font-medium">Jam Pulang</label>
+        <input 
+            type="time" id="jam_keluar" name="jam_keluar" value="{{ old('jam_keluar') }}" 
+            class="w-full border rounded px-3 py-2 @error('jam_keluar') border-red-600 @enderror" 
+            required
+        >
+        @error('jam_keluar') 
+            <p class="text-red-600 text-sm mt-1">{{ $message }}</p> 
+        @enderror
+    </div>
+</div>
+
 
             <div>
                 <label for="pelayanan" class="block mb-1 font-medium">Pelayanan (pisahkan dengan koma)</label>

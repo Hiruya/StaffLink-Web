@@ -34,44 +34,46 @@
             </table>
 
             <div class="flex justify-end mt-4 gap-4">
-                <button type="button" onclick="printTable()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition relative z-10">
-                    Download / Print
-                </button>
+                <button type="button" onclick="downloadPdf()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition relative z-10">
+    Download
+</button>
+
             </div>
 
         </div>
         
-        <!-- Media Print CSS -->
-        <style>
-            @media print {
-                body * {
-                    visibility: hidden;
-                }
-                #absensi-table, #absensi-table * {
-                    visibility: visible;
-                }
-                #absensi-table {
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    width: 100%;
-                }
-            }
-        </style>
 
         @push('scripts')
-            <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-            <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-            <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-            <script>
-                $(document).ready(function () {
-                    $('#absensi-table').DataTable();
-                });
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
-                function printTable() {
-                    window.print();
-                }
-            </script>
-        @endpush
+    <!-- Tambahkan jsPDF dan jsPDF-AutoTable -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#absensi-table').DataTable();
+        });
+
+        // Fungsi buat generate PDF dari tabel
+        function downloadPdf() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.autoTable({ 
+                html: '#absensi-table',
+                styles: { fontSize: 8 },
+                headStyles: { fillColor: [22, 160, 133] },
+                theme: 'striped',
+                margin: { top: 10 }
+            });
+
+            doc.save('laporan-absensi.pdf');
+        }
+    </script>
+@endpush
+
     </div>
 </x-layouts.app>
