@@ -31,7 +31,7 @@
                             <td class="px-4 py-2">{{ $laporan->nama }}</td>
                             <td class="px-4 py-2">{{ $laporan->departemen }}</td>
                             <td class="px-4 py-2">{{ $laporan->shift }}</td>
-                            <td class="px-4 py-2">{{ $laporan->jam_masuk }} - {{ $laporan->jam_keluar }}</td>
+                            <td class="px-4 py-2">{{ $laporan->jam_kerja }}</td>
                             <td class="px-4 py-2 max-w-xs break-words">
                                 @if(!empty($laporan->pelayanan))
                                     {{ $laporan->pelayanan }}
@@ -40,13 +40,16 @@
                                 @endif
                             </td>
                             <td class="px-4 py-2 max-w-xs break-words">
-                                @if(!empty($laporan->dokumentasi))
+                           @if (!empty($laporan->dokumentasi))
                                     @php
-                                        $docs = explode(',', $laporan->dokumentasi);
+                                        $cleaned = str_replace(['"', "'"], '', $laporan->dokumentasi);
+                                        $docs = array_filter(explode(',', $cleaned));
                                     @endphp
+
                                     @foreach ($docs as $dok)
-                                        <a href="{{ asset('storage/' . $dok) }}" target="_blank"
-                                           class="text-blue-500 underline text-xs block mb-1">Lihat</a>
+                                        @if(trim($dok) != '')
+                                            <a href="{{ asset('storage/dokumen_reports/' . trim($dok)) }}" target="_blank" class="text-blue-500 underline text-xs block mb-1">Lihat</a>
+                                        @endif
                                     @endforeach
                                 @else
                                     <span class="text-gray-400 italic">-</span>
@@ -71,59 +74,45 @@
                 </tbody>
             </table>
         </div>
+<!-- Tombol Print di kanan bawah -->
+<div class="flex justify-end mt-4">
+     <button type="button" onclick="downloadPdf()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition relative z-10">
+    Download
+</button>
+</div>
 
-        <!-- Tombol Print di kanan bawah -->
-        <div class="flex justify-end mt-4">
-            <button type="button" onclick="printTable()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
-                Download / Print
-            </button>
-        </div>
-    </div>
-</x-layouts.app>
 
-@push('scripts')
-    <!-- DataTables CSS & JS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+
+    @push('scripts')
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <!-- Tambahkan jsPDF dan jsPDF-AutoTable -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 
     <script>
         $(document).ready(function () {
-            $('#laporan-table').DataTable({
-                destroy: true,
-                responsive: true,
-                columnDefs: [
-                    { orderable: false, targets: [6, 7, 8] }
-                ],
-            });
+            $('#laporan-table').DataTable();
         });
 
-        function printTable() {
-            const printContents = document.getElementById("print-area").innerHTML;
-            const originalContents = document.body.innerHTML;
+        // Fungsi buat generate PDF dari tabel laporan harian
+        function downloadPdf() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
 
-            document.body.innerHTML = `
-                <html>
-                    <head>
-                        <title>Cetak Laporan Harian</title>
-                        <style>
-                            body { font-family: sans-serif; margin: 20px; }
-                            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-                            th, td { border: 1px solid #ccc; padding: 8px; text-align: left; word-wrap: break-word; }
-                            th { background-color: #f2f2f2; }
-                            h2 { text-align: center; }
-                        </style>
-                    </head>
-                    <body>
-                        <h2>Laporan Pekerjaan Harian</h2>
-                        ${printContents}
-                    </body>
-                </html>
-            `;
-            window.print();
+            doc.autoTable({ 
+                html: '#laporan-table',
+                styles: { fontSize: 8 },
+                headStyles: { fillColor: [22, 160, 133] },
+                theme: 'striped',
+                margin: { top: 10 }
+            });
 
-            // Setelah print, reload halaman agar JS dan event kembali normal
-            window.location.reload();
+            doc.save('laporan-harian.pdf');
         }
     </script>
 @endpush
+  </div>
+</x-layouts.app>
