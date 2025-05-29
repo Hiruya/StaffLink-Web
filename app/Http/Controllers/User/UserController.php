@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\User;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Absensi;
@@ -124,4 +124,52 @@ class UserController extends Controller
             ], 404);
         }
     }
+    public function updateProfile(Request $request)
+{
+    $user = Auth::user();
+
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users,email,' . $user->id, // validasi email unik kecuali milik user ini
+        'password' => 'nullable|string|min:6|confirmed', // password boleh kosong, tapi kalau diisi harus minimal 6 dan harus ada password_confirmation
+    ]);
+
+    $user->name = $request->input('name');
+    $user->email = $request->input('email');
+
+    if ($request->filled('password')) {
+        $user->password = bcrypt($request->input('password')); // hash password baru
+    }
+
+    $user->save();
+
+    return response()->json([
+        'message' => 'Profile updated successfully',
+        'user' => $user,
+    ]);
+}
+public function deleteAccount(Request $request)
+{
+    $user = Auth::user();
+
+    // Opsi: kamu bisa tambahkan validasi konfirmasi password sebelum hapus akun
+    $request->validate([
+        'password' => 'required|string',
+    ]);
+
+    // Cek password sesuai user saat ini
+    if (!\Hash::check($request->password, $user->password)) {
+        return response()->json([
+            'message' => 'Password salah, akun tidak dapat dihapus',
+        ], 403);
+    }
+
+    // Hapus akun user
+    $user->delete();
+
+    return response()->json([
+        'message' => 'Akun berhasil dihapus',
+    ]);
+}
+
 }
