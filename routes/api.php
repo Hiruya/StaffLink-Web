@@ -36,7 +36,8 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::post('/absen', [AbsensiController::class, 'store']);
-Route::get('/absen/check', [AbsenController::class, 'checkAbsen']);
+Route::get('/absen/check', [AbsensiController::class, 'checkAbsen']);
+Route::middleware('auth:sanctum')->get('/absen/bulanan', [AbsensiController::class, 'getAbsensiBulanan']);
 Route::get('/users/last-login', function() {
     return \App\Models\User::select('id', 'name', 'updated_at')
         ->orderBy('updated_at', 'desc')

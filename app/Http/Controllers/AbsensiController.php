@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Absensi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 use PDF;
 
 class AbsensiController extends Controller
@@ -229,6 +231,55 @@ public function checkAbsen(Request $request)
     return response()->json([
         'success' => true,
         'exists' => $exists,
+    ]);
+}
+ public function getAbsensiBulanan()
+{
+    $user = Auth::user();
+
+    // Aggregate absensi berdasarkan bulan untuk 6 bulan terakhir
+    $absensiBulanan = Absensi::raw(function($collection) use ($user) {
+        return $collection->aggregate([
+            [
+                '$match' => ['user_id' => $user->id] // filter user
+            ],
+            [
+                '$addFields' => [
+                    'tanggalDate' => ['$toDate' => '$tanggal']  // ubah string ke Date
+                ]
+            ],
+            [
+                '$group' => [
+                    '_id' => ['$month' => '$tanggalDate'],  // group by bulan
+                    'count' => ['$sum' => 1]
+                ]
+            ],
+            [
+                '$match' => ['_id' => ['$lte' => 6]] // filter bulan 1 sampai 6 (jika perlu)
+            ],
+            [
+                '$sort' => ['_id' => 1]
+            ]
+        ]);
+    });
+
+    // Ubah hasil agregasi jadi array bulan => jumlah
+    $result = [];
+    foreach ($absensiBulanan as $item) {
+        $result[$item->_id] = $item->count;
+    }
+
+    // Buat array 1 sampai 6, isi dengan jumlah absensi (0 kalau tidak ada)
+    $final = [];
+    for ($month = 1; $month <= 12; $month++) {
+        $final[] = $result[$month] ?? 0;
+    }
+
+    return response()->json([
+        'status' => true,
+        'data' => [
+            'absensi_per_bulan' => $final
+        ]
     ]);
 }
 }

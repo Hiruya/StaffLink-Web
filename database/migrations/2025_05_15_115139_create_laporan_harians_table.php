@@ -18,7 +18,7 @@ class CreateLaporanHariansTable extends Migration
             $table->string('shift');
             $table->time('jam_kerja');
             $table->time('jam_keluar');
-            $table->json('pelayanan')->nullable();
+            $table->string('pelayanan')->nullable();
             $table->json('dokumentasi')->nullable();
             $table->timestamps();
         });
