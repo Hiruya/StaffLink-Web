@@ -27,10 +27,9 @@
                             <td class="px-4 py-2">{{ $laporan->total_persentase }}</td>
                             <td class="px-4 py-2">{{ $laporan->indeks }}</td>
                             <td class="px-4 py-2 space-x-2 whitespace-nowrap">
-                                <a href="{{ route('laporanharian.edit', $laporan->id) }}"
-                                   class="text-blue-600 hover:underline text-xs">Edit</a>
-                                <form action="{{ route('laporanharian.destroy', $laporan->id) }}"
-                                      method="POST" class="inline" onsubmit="return confirm('Yakin ingin hapus?')">
+                              <!--   <a href="{{ route('laporanharian.edit', $laporan->id) }}"
+                                   class="text-blue-600 hover:underline text-xs">Edit</a> -->
+                                <form action="{{ route('penilaian.destroy', $laporan->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-red-600 hover:underline text-xs">Hapus</button>

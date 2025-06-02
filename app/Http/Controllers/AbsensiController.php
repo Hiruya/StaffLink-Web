@@ -50,6 +50,7 @@ class AbsensiController extends Controller
             'waktu_keluar' => $waktu_keluar,
             'durasi' => $durasi,
             'keterangan' => $keterangan,
+            'departemen' => $group->first()->departemen ?? '-', 
         ];
     })->values(); // reset index
 
@@ -108,9 +109,11 @@ class AbsensiController extends Controller
             'tipe' => 'required|in:masuk,pulang,sakit,izin',
             'keterangan' => 'nullable|string',
             'waktu_masuk' => 'nullable|date_format:H:i:s',
-            'waktu_keluar' => 'nullable|date_format:H:i:s',
+              'departemen' => 'nullable|string',  // <== tambah validasi departemen
         ]);
 
+        // Ambil data departemen dari request
+        $departemen = $request->departemen ?? null;
         $userId = $request->user_id;
         $tanggal = $request->tanggal;
         $tipe = $request->tipe;
@@ -159,6 +162,7 @@ class AbsensiController extends Controller
             'keterangan' => in_array($tipe, ['sakit', 'izin'])
                 ? ($request->keterangan ?? '-')
                 : '-',
+            'departemen' => $request->departemen ?? '-', 
         ];
 
         if ($tipe === 'masuk') {

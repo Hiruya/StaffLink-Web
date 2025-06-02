@@ -33,33 +33,35 @@
                             <td class="px-4 py-2">{{ $laporan->shift }}</td>
                             <td class="px-4 py-2">{{ $laporan->jam_kerja }}</td>
                             <td class="px-4 py-2 max-w-xs break-words">
-                                @if(!empty($laporan->pelayanan))
-                                    {{ $laporan->pelayanan }}
-                                @else
-                                    <span class="text-gray-400 italic">-</span>
-                                @endif
-                            </td>
-                            <td class="px-4 py-2 max-w-xs break-words">
-                           @if (!empty($laporan->dokumentasi))
-                                    @php
-                                        $cleaned = str_replace(['"', "'"], '', $laporan->dokumentasi);
-                                        $docs = array_filter(explode(',', $cleaned));
-                                    @endphp
+                            @if(!empty($laporan->pelayanan))
+                                {{ is_array($laporan->pelayanan) ? implode(', ', $laporan->pelayanan) : $laporan->pelayanan }}
+                            @else
+                                <span class="text-gray-400 italic">-</span>
+                            @endif
+                        </td>
 
-                                    @foreach ($docs as $dok)
-                                        @if(trim($dok) != '')
-                                            <a href="{{ asset('storage/dokumen_reports/' . trim($dok)) }}" target="_blank" class="text-blue-500 underline text-xs block mb-1">Lihat</a>
-                                        @endif
-                                    @endforeach
-                                @else
-                                    <span class="text-gray-400 italic">-</span>
-                                @endif
-                            </td>
+                            <td class="px-4 py-2 max-w-xs break-words">
+    @php
+    $docs = $laporan->dokumentasi;
+    if (is_string($docs)) {
+        $docs = json_decode($docs, true);
+    }
+@endphp
+
+@if (is_array($docs) && count($docs) > 0)
+    @foreach ($docs as $dok)
+        @if ($dok)
+            <a href="{{ asset('storage/' . $dok) }}" target="_blank" class="text-blue-600 hover:underline">Lihat</a><br>
+        @endif
+    @endforeach
+@else
+    <span class="text-gray-400 italic">-</span>
+@endif
+
+</td>
                             <td class="px-4 py-2 space-x-2 whitespace-nowrap">
-                                <a href="{{ route('laporanharian.edit', $laporan->id) }}"
-                                   class="text-blue-600 hover:underline text-xs">Edit</a>
-                                <form action="{{ route('laporanharian.destroy', $laporan->id) }}"
-                                      method="POST" class="inline" onsubmit="return confirm('Yakin ingin hapus?')">
+                                <a href="{{ route('laporanharian.edit', $laporan->id) }}" class="text-blue-600 hover:underline text-xs">Edit</a>
+                                <form action="{{ route('laporanharian.destroy', $laporan->id) }}" method="POST" class="inline" onsubmit="return confirm('Yakin ingin hapus?')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-red-600 hover:underline text-xs">Hapus</button>
@@ -74,21 +76,18 @@
                 </tbody>
             </table>
         </div>
-<!-- Tombol Print di kanan bawah -->
-<div class="flex justify-end mt-4">
-     <button type="button" onclick="downloadPdf()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition relative z-10">
-    Download
-</button>
-</div>
 
-
+        <div class="flex justify-end mt-4">
+            <button type="button" onclick="downloadPdf()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition relative z-10">
+                Download
+            </button>
+        </div>
 
     @push('scripts')
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
-    <!-- Tambahkan jsPDF dan jsPDF-AutoTable -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 
@@ -97,7 +96,6 @@
             $('#laporan-table').DataTable();
         });
 
-        // Fungsi buat generate PDF dari tabel laporan harian
         function downloadPdf() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
@@ -113,6 +111,6 @@
             doc.save('laporan-harian.pdf');
         }
     </script>
-@endpush
-  </div>
+    @endpush
+    </div>
 </x-layouts.app>

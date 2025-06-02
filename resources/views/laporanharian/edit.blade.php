@@ -27,25 +27,48 @@
                 @error('nama') <p class="text-red-600 text-sm mt-1">{{ $message }}</p> @enderror
             </div>
 
-            <div>
-                <label for="departemen" class="block mb-1 font-medium">Departemen</label>
-                <select id="departemen" name="departemen" class="w-full border rounded px-3 py-2" required>
-                    <option value="">-- Pilih Departemen --</option>
-                    @foreach(['sales & marketing', 'operations', 'technology', 'analytics', 'R&D', 'procurement', 'finance', 'HR', 'legal'] as $dept)
-                        <option value="{{ $dept }}" {{ old('departemen', $laporanharian->departemen) === $dept ? 'selected' : '' }}>
-                            {{ ucfirst($dept) }}
-                        </option>
-                    @endforeach
-                </select>
-                @error('departemen') <p class="text-red-600 text-sm mt-1">{{ $message }}</p> @enderror
-            </div>
+             <div>
+    <label for="departemen" class="block mb-1 font-medium">Departemen</label>
+    <select 
+        id="departemen" name="departemen" 
+        class="w-full border rounded px-3 py-2 @error('departemen') border-red-600 @enderror" 
+        required
+        aria-describedby="departemen-error"
+    >
+        <option value="">-- Pilih Departemen --</option>
+        <option value="Sales & Marketing" {{ old('departemen') == 'Sales & Marketing' ? 'selected' : '' }}>Sales & Marketing</option>
+        <option value="Operations" {{ old('departemen') == 'Operations' ? 'selected' : '' }}>Operations</option>
+        <option value="Technology" {{ old('departemen') == 'Technology' ? 'selected' : '' }}>Technology</option>
+        <option value="Analytics" {{ old('departemen') == 'Analytics' ? 'selected' : '' }}>Analytics</option>
+        <option value="R&D" {{ old('departemen') == 'R&D' ? 'selected' : '' }}>R&D</option>
+        <option value="Procurement" {{ old('departemen') == 'Procurement' ? 'selected' : '' }}>Procurement</option>
+        <option value="Finance" {{ old('departemen') == 'Finance' ? 'selected' : '' }}>Finance</option>
+        <option value="HR" {{ old('departemen') == 'HR' ? 'selected' : '' }}>HR</option>
+        <option value="Legal" {{ old('departemen') == 'Legal' ? 'selected' : '' }}>Legal</option>
+    </select>
+    @error('departemen') 
+        <p id="departemen-error" class="text-red-600 text-sm mt-1">{{ $message }}</p> 
+    @enderror
+</div>
 
             <div>
                 <label for="shift" class="block mb-1 font-medium">Shift</label>
-                <input type="text" id="shift" name="shift" value="{{ old('shift', $laporanharian->shift) }}"
-                       class="w-full border rounded px-3 py-2" required>
-                @error('shift') <p class="text-red-600 text-sm mt-1">{{ $message }}</p> @enderror
+                <select 
+                    id="shift" name="shift" 
+                    class="w-full border rounded px-3 py-2 @error('shift') border-red-600 @enderror" 
+                    required
+                    aria-describedby="shift-error"
+                >
+                    <option value="">-- Pilih Shift --</option>
+                    <option value="Pagi" {{ old('shift') == 'Pagi' ? 'selected' : '' }}>Pagi</option>
+                    <option value="Siang" {{ old('shift') == 'Siang' ? 'selected' : '' }}>Siang</option>
+                    <option value="Malam" {{ old('shift') == 'Malam' ? 'selected' : '' }}>Malam</option>
+                </select>
+                @error('shift') 
+                    <p id="shift-error" class="text-red-600 text-sm mt-1">{{ $message }}</p> 
+                @enderror
             </div>
+
 
             <div>
                 <label for="jam_masuk" class="block mb-1 font-medium">Jam Masuk</label>
@@ -80,7 +103,7 @@
                         <strong>Dokumentasi sebelumnya:</strong><br>
                         @foreach(explode(',', $laporanharian->dokumentasi) as $file)
                             <a href="{{ asset('storage/' . $file) }}" target="_blank" class="text-blue-600 underline block mb-1">
-                                {{ basename($file) }}
+                                {{ ('storage/'. $file) }}
                             </a>
                         @endforeach
                     </div>
