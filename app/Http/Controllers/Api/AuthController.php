@@ -19,43 +19,49 @@ class AuthController extends Controller
      * Handle an incoming authentication request.
      */
     public function login(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
+{
+    $request->validate([
+        'email' => 'required|string|email',
+        'password' => 'required|string',
+    ]);
 
-        $this->ensureIsNotRateLimited($request);
+    $this->ensureIsNotRateLimited($request);
 
-        try {
-            $user = \App\Models\User::where('email', $request->email)->first();
+    try {
+        $user = \App\Models\User::where('email', $request->email)->first();
 
-            if (!$user || !Hash::check($request->password, $user->password)) {
-                RateLimiter::hit($this->throttleKey($request));
-
-                return response()->json([
-                    'message' => __('auth.failed'),
-                    'errors' => [
-                        'email' => [__('auth.failed')]
-                    ]
-                ], 401);
-            }
-
-            $token = $user->createToken('mobile-token')->plainTextToken;
-
-            RateLimiter::clear($this->throttleKey($request));
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            RateLimiter::hit($this->throttleKey($request));
 
             return response()->json([
-                'user' => $user,
-                'token' => $token,
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => 'Database connection error',
-                'error' => $e->getMessage()
-            ], 500);
+                'message' => __('auth.failed'),
+                'errors' => [
+                    'email' => [__('auth.failed')]
+                ]
+            ], 401);
         }
+
+        $token = $user->createToken('mobile-token')->plainTextToken;
+
+        RateLimiter::clear($this->throttleKey($request));
+
+        return response()->json([
+            'token' => $token,
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'departemen' => $user->departemen, // ✅ di sini
+            ],
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'message' => 'Database connection error',
+            'error' => $e->getMessage()
+        ], 500);
     }
+}
+
 
     /**
      * Ensure the authentication request is not rate limited.
@@ -93,21 +99,24 @@ class AuthController extends Controller
 
         return response()->json(['message' => 'Successfully logged out']);
     }
-    public function register(Request $request)
+   public function register(Request $request)
 {
     $validated = $request->validate([
         'name' => 'required|string',
         'email' => 'required|email|unique:users',
+        'departemen' => 'required|string',
         'password' => 'required|min:6',
     ]);
 
     $user = User::create([
         'name' => $validated['name'],
         'email' => $validated['email'],
+        'departemen' => $validated['departemen'],
         'password' => bcrypt($validated['password']),
     ]);
 
     return response()->json(['message' => 'User registered successfully'], 200);
 }
+
 
 }

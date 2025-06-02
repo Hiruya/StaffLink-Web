@@ -11,8 +11,17 @@ class Absensi extends Model
     protected $table = 'absensi';
 
     protected $fillable = [
-        'user_id', 'tanggal', 'waktu_masuk', 'waktu_keluar', 'waktu_kerja', 'keterangan', 'tipe'
-    ];
+    'user_id',
+    'nama',
+    'tanggal',
+    'tipe',
+    'keterangan',
+    'waktu_masuk',
+    'waktu_keluar',
+    'waktu_kerja',
+    'departemen',  // <== tambahkan ini
+];
+
 
     public function user()
     {

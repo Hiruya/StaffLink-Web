@@ -4,12 +4,16 @@
         class="relative h-full flex-1 overflow-x-auto rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 p-4"
     >
         <div class="container mx-auto p-4">
-            {{-- Tabel Absensi --}}
+
+            <!-- Tambahkan Judul di sini -->
+            <h2 class="text-2xl font-bold text-neutral-800 dark:text-white mb-4">Absensi Karyawan</h2>
+
             <table id="absensi-table" class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                 <thead>
                     <tr>
                         <th>No</th>
                         <th>Nama</th>
+                         <th>Departemen</th>
                         <th>Tanggal</th>
                         <th>Waktu Masuk</th>
                         <th>Waktu Pulang</th>
@@ -22,6 +26,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->user->name ?? '-' }}</td>
+                            <td>{{ $item->departemen }}</td>
                             <td>{{ $item->tanggal }}</td>
                             <td>{{ $item->waktu_masuk ?? '-' }}</td>
                             <td>{{ $item->waktu_keluar ?? '-' }}</td>
